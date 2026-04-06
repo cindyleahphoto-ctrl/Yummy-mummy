@@ -45,28 +45,55 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text-da
 .login-divider{text-align:center;color:var(--text-light);font-size:12px;margin:16px 0;}
 .guest-btn{width:100%;padding:13px;background:white;color:var(--rose);border:2px solid var(--rose);border-radius:16px;font-size:14px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;}
 .login-footer{font-size:11px;color:var(--text-light);text-align:center;margin-top:16px;line-height:1.6;}
-#screenSubscribe{background:linear-gradient(160deg,#F9E4EF 0%,#FDF0F5 50%,#FFF3E8 100%);padding:40px 20px 60px;}
-.sub-header{text-align:center;margin-bottom:28px;}
-.sub-header h2{font-family:'Playfair Display',serif;font-size:28px;color:var(--text-dark);margin-bottom:6px;}
-.sub-header p{font-size:14px;color:var(--text-mid);line-height:1.6;}
-.sub-cards{display:flex;flex-direction:column;gap:20px;max-width:420px;margin:0 auto;}
-.sub-card{background:white;border-radius:24px;padding:28px 24px;border:2px solid var(--border);box-shadow:var(--shadow);position:relative;}
-.sub-card.featured{border-color:var(--rose);box-shadow:0 8px 40px rgba(181,83,122,0.2);}
-.sub-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--rose);color:white;font-size:11px;font-weight:700;padding:4px 20px;border-radius:20px;text-transform:uppercase;letter-spacing:1px;white-space:nowrap;}
-.sub-tier{font-size:11px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;}
-.sub-name{font-family:'Playfair Display',serif;font-size:28px;color:var(--text-dark);margin-bottom:4px;}
-.sub-price{font-size:32px;font-weight:800;color:var(--rose);margin-bottom:4px;}
-.sub-price span{font-size:14px;font-weight:500;color:var(--text-light);}
-.sub-desc{font-size:13px;color:var(--text-mid);margin-bottom:20px;line-height:1.5;}
-.sub-features{list-style:none;margin-bottom:24px;display:flex;flex-direction:column;gap:10px;}
-.sub-features li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--text-dark);}
-.sub-features li .fi{font-size:16px;flex-shrink:0;}
+#screenSubscribe{background:linear-gradient(170deg,#FDF0F5 0%,#FFF8F2 50%,#F0EDF8 100%);padding:0 0 60px;min-height:100vh;}
+.sub-top{background:linear-gradient(135deg,#B5537A 0%,#8B3A6B 100%);padding:44px 24px 32px;text-align:center;position:relative;overflow:hidden;}
+.sub-top::before{content:'';position:absolute;right:-40px;top:-40px;width:180px;height:180px;background:rgba(255,255,255,0.07);border-radius:50%;}
+.sub-top::after{content:'';position:absolute;left:-30px;bottom:-30px;width:120px;height:120px;background:rgba(255,255,255,0.05);border-radius:50%;}
+.sub-top-logo{width:56px;height:56px;background:rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;backdrop-filter:blur(4px);}
+.sub-top-logo svg{width:32px;height:32px;fill:white;}
+.sub-top h2{font-family:'Playfair Display',serif;font-size:28px;color:white;margin-bottom:8px;position:relative;z-index:1;}
+.sub-top p{font-size:14px;color:rgba(255,255,255,0.82);line-height:1.6;max-width:280px;margin:0 auto;position:relative;z-index:1;}
+.billing-toggle{display:flex;align-items:center;justify-content:center;gap:12px;margin:20px 24px 0;position:relative;z-index:1;}
+.billing-label{font-size:13px;font-weight:700;color:rgba(255,255,255,0.7);transition:color 0.2s;}
+.billing-label.active{color:white;}
+.toggle-track{width:48px;height:26px;background:rgba(255,255,255,0.3);border-radius:13px;cursor:pointer;position:relative;transition:background 0.3s;flex-shrink:0;}
+.toggle-track.yearly{background:rgba(255,255,255,0.5);}
+.toggle-thumb{width:20px;height:20px;background:white;border-radius:50%;position:absolute;top:3px;left:3px;transition:transform 0.3s;box-shadow:0 2px 6px rgba(0,0,0,0.2);}
+.toggle-track.yearly .toggle-thumb{transform:translateX(22px);}
+.save-pill{background:#F5C842;color:#5C3A00;font-size:10px;font-weight:800;padding:3px 8px;border-radius:10px;letter-spacing:0.5px;}
+.sub-body{padding:24px 20px 0;}
+.sub-cards{display:flex;flex-direction:column;gap:20px;max-width:440px;margin:0 auto;}
+.sub-card{background:white;border-radius:24px;padding:28px 24px 24px;border:2px solid var(--border);box-shadow:0 4px 24px rgba(181,83,122,0.08);position:relative;transition:box-shadow 0.3s;}
+.sub-card.featured{border-color:var(--rose);box-shadow:0 8px 40px rgba(181,83,122,0.22);}
+.sub-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--rose),#8B3A6B);color:white;font-size:10px;font-weight:800;padding:5px 20px;border-radius:20px;text-transform:uppercase;letter-spacing:1.2px;white-space:nowrap;box-shadow:0 4px 12px rgba(181,83,122,0.4);}
+.sub-card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;}
+.sub-tier{font-size:10px;font-weight:800;color:var(--text-light);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;}
+.sub-name{font-family:'Playfair Display',serif;font-size:30px;color:var(--text-dark);line-height:1;}
+.sub-name.flourish{background:linear-gradient(135deg,var(--rose),#8B3A6B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sub-price-block{text-align:right;}
+.sub-price{font-size:30px;font-weight:800;color:var(--rose);line-height:1;}
+.sub-price-free{font-size:22px;font-weight:800;color:var(--sage);line-height:1;}
+.sub-price-period{font-size:11px;color:var(--text-light);font-weight:600;margin-top:2px;}
+.sub-price-alt{font-size:11px;color:var(--rose);font-weight:600;margin-top:2px;background:var(--rose-light);padding:2px 8px;border-radius:8px;display:inline-block;}
+.sub-divider{height:1px;background:var(--border);margin:0 0 18px;}
+.sub-desc{font-size:13px;color:var(--text-mid);margin-bottom:18px;line-height:1.6;font-style:italic;}
+.sub-features{list-style:none;margin-bottom:24px;display:flex;flex-direction:column;gap:11px;}
+.sub-features li{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:var(--text-dark);line-height:1.4;}
+.sub-features li .fi{font-size:15px;flex-shrink:0;margin-top:1px;}
 .sub-features li.locked{color:var(--text-light);}
-.sub-cta{width:100%;padding:14px;border-radius:16px;font-size:15px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;border:none;}
-.sub-cta.primary{background:var(--rose);color:white;box-shadow:0 6px 20px rgba(181,83,122,0.3);}
+.sub-features li .check{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;margin-top:1px;}
+.sub-features li .check.yes{background:#D4F0D3;color:#2D6B2A;}
+.sub-features li .check.no{background:#F0E8F5;color:var(--text-light);}
+.sub-cta{width:100%;padding:15px;border-radius:16px;font-size:15px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;border:none;transition:transform 0.15s,box-shadow 0.15s;}
+.sub-cta:active{transform:scale(0.97);}
+.sub-cta.primary{background:linear-gradient(135deg,var(--rose) 0%,#8B3A6B 100%);color:white;box-shadow:0 6px 20px rgba(181,83,122,0.35);}
 .sub-cta.secondary{background:white;color:var(--rose);border:2px solid var(--rose);}
-.sub-skip{text-align:center;margin-top:20px;}
+.sub-guarantee{text-align:center;margin-top:12px;font-size:11px;color:var(--text-light);}
+.sub-skip{text-align:center;margin:20px 0 0;padding:0 20px;}
 .sub-skip a{font-size:13px;color:var(--text-light);cursor:pointer;text-decoration:underline;}
+.sub-trust{display:flex;justify-content:center;gap:20px;padding:20px 20px 0;max-width:440px;margin:0 auto;}
+.trust-item{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;color:var(--text-light);text-align:center;}
+.trust-icon{font-size:20px;}
 #screenApp{background:var(--cream);display:flex;flex-direction:column;}
 .app-header{background:white;border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(181,83,122,0.08);}
 .header-brand{display:flex;align-items:center;gap:10px;}
@@ -206,6 +233,46 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text-da
 .reply-send{padding:8px 16px;background:var(--rose);color:white;border:none;border-radius:16px;font-size:12px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;}
 .offline-banner{background:#FFF3CC;padding:8px 16px;text-align:center;font-size:12px;color:#7A5A00;font-weight:600;display:none;}
 .offline-banner.show{display:block;}
+.profile-hero{background:linear-gradient(135deg,#B5537A 0%,#8B3A6B 100%);padding:36px 20px 28px;text-align:center;position:relative;overflow:hidden;}
+.profile-hero::before{content:'';position:absolute;right:-50px;top:-50px;width:200px;height:200px;background:rgba(255,255,255,0.06);border-radius:50%;}
+.profile-avatar-wrap{position:relative;display:inline-block;margin-bottom:14px;}
+.profile-avatar-big{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,0.25);border:3px solid rgba(255,255,255,0.6);display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;color:white;font-family:'Playfair Display',serif;margin:0 auto;}
+.profile-avatar-edit{position:absolute;bottom:0;right:0;width:26px;height:26px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.2);}
+.profile-name-display{font-family:'Playfair Display',serif;font-size:24px;color:white;margin-bottom:4px;}
+.profile-email-display{font-size:13px;color:rgba(255,255,255,0.75);margin-bottom:12px;}
+.profile-plan-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.4);color:white;font-size:12px;font-weight:700;padding:6px 16px;border-radius:20px;backdrop-filter:blur(4px);}
+.profile-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin:20px 20px 0;border-radius:16px;overflow:hidden;}
+.profile-stat{background:white;padding:16px 8px;text-align:center;}
+.profile-stat-num{font-size:22px;font-weight:800;color:var(--rose);}
+.profile-stat-label{font-size:10px;color:var(--text-light);font-weight:600;margin-top:2px;text-transform:uppercase;letter-spacing:0.5px;}
+.profile-section{padding:20px 20px 0;}
+.profile-section-title{font-size:12px;font-weight:800;color:var(--text-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+.profile-card{background:white;border-radius:16px;border:1px solid var(--border);overflow:hidden;margin-bottom:16px;}
+.profile-row{display:flex;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s;}
+.profile-row:last-child{border-bottom:none;}
+.profile-row:active{background:var(--rose-pale);}
+.profile-row-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.profile-row-icon.rose{background:var(--rose-light);}
+.profile-row-icon.gold{background:var(--gold-light);}
+.profile-row-icon.sage{background:var(--sage-light);}
+.profile-row-icon.purple{background:#EAD5F0;}
+.profile-row-body{flex:1;}
+.profile-row-title{font-size:14px;font-weight:700;color:var(--text-dark);}
+.profile-row-sub{font-size:12px;color:var(--text-light);margin-top:2px;}
+.profile-row-right{font-size:18px;color:var(--text-light);}
+.profile-row-value{font-size:12px;color:var(--rose);font-weight:700;background:var(--rose-light);padding:3px 10px;border-radius:10px;}
+.profile-edit-overlay{display:none;position:fixed;inset:0;z-index:600;background:rgba(45,31,40,0.5);align-items:flex-end;justify-content:center;}
+.profile-edit-overlay.show{display:flex;}
+.profile-edit-sheet{background:white;border-radius:24px 24px 0 0;padding:28px 24px 40px;width:100%;max-width:480px;}
+.edit-sheet-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--text-dark);margin-bottom:20px;}
+.edit-field{margin-bottom:16px;}
+.edit-label{font-size:11px;font-weight:700;color:var(--text-mid);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;display:block;}
+.edit-input{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:14px;font-family:'Nunito',sans-serif;font-size:15px;color:var(--text-dark);background:var(--warm-white);outline:none;}
+.edit-input:focus{border-color:var(--rose);}
+.edit-actions{display:flex;gap:10px;margin-top:8px;}
+.edit-save{flex:1;padding:13px;background:var(--rose);color:white;border:none;border-radius:14px;font-size:15px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;}
+.edit-cancel{padding:13px 20px;background:white;color:var(--rose);border:2px solid var(--rose);border-radius:14px;font-size:15px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;}
+.logout-btn{width:calc(100% - 40px);margin:4px 20px 32px;padding:14px;background:white;color:#C0392B;border:2px solid #F5C6C2;border-radius:14px;font-size:15px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;}
 .breathing-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(181,83,122,0.95);align-items:center;justify-content:center;flex-direction:column;gap:20px;}
 .breathing-overlay.show{display:flex;}
 .breath-circle{width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.2);border:3px solid rgba(255,255,255,0.6);display:flex;align-items:center;justify-content:center;color:white;font-size:18px;font-weight:700;transition:transform 4s ease-in-out;cursor:pointer;}
@@ -223,19 +290,19 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text-da
   <p class="tagline">Your postpartum support companion</p>
   <p class="lang-prompt">Choose your language</p>
   <div class="lang-grid" id="langGrid">
-    <button class="lang-btn active" data-lang="en">English</button>
-    <button class="lang-btn" data-lang="zu">isiZulu</button>
-    <button class="lang-btn" data-lang="xh">isiXhosa</button>
-    <button class="lang-btn" data-lang="af">Afrikaans</button>
-    <button class="lang-btn" data-lang="st">Sesotho</button>
-    <button class="lang-btn" data-lang="tn">Setswana</button>
-    <button class="lang-btn" data-lang="ts">Xitsonga</button>
-    <button class="lang-btn" data-lang="ve">Tshivenda</button>
-    <button class="lang-btn" data-lang="ss">siSwati</button>
-    <button class="lang-btn" data-lang="nd">isiNdebele (N)</button>
-    <button class="lang-btn" data-lang="nr">isiNdebele (S)</button>
+    <button type="button" class="lang-btn active" data-lang="en">English</button>
+    <button type="button" class="lang-btn" data-lang="zu">isiZulu</button>
+    <button type="button" class="lang-btn" data-lang="xh">isiXhosa</button>
+    <button type="button" class="lang-btn" data-lang="af">Afrikaans</button>
+    <button type="button" class="lang-btn" data-lang="st">Sesotho</button>
+    <button type="button" class="lang-btn" data-lang="tn">Setswana</button>
+    <button type="button" class="lang-btn" data-lang="ts">Xitsonga</button>
+    <button type="button" class="lang-btn" data-lang="ve">Tshivenḓa</button>
+    <button type="button" class="lang-btn" data-lang="ss">siSwati</button>
+    <button type="button" class="lang-btn" data-lang="nd">isiNdebele (N)</button>
+    <button type="button" class="lang-btn" data-lang="nr">isiNdebele (S)</button>
   </div>
-  <button class="lang-continue" id="langContinueBtn">Continue</button>
+  <button type="button" class="lang-continue" id="langContinueBtn">Begin my journey ♡</button>
 </div>
 
 <!-- SCREEN 2: LOGIN -->
@@ -249,22 +316,22 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text-da
       <h2>Welcome, Mama</h2>
       <p class="login-sub">Sign in to save your progress and connect with our community</p>
       <div class="login-tabs">
-        <button class="login-tab active" id="tabLogin" onclick="switchTab('login')">Sign In</button>
-        <button class="login-tab" id="tabRegister" onclick="switchTab('register')">Create Account</button>
+        <button type="button" class="login-tab active" id="tabLogin" onclick="switchTab('login')">Sign In</button>
+        <button type="button" class="login-tab" id="tabRegister" onclick="switchTab('register')">Create Account</button>
       </div>
       <div id="formLogin">
         <div class="form-group"><label class="form-label">Email address</label><input class="form-input" type="email" id="loginEmail" placeholder="mama@example.com"></div>
         <div class="form-group"><label class="form-label">Password</label><input class="form-input" type="password" id="loginPassword" placeholder="Your password"></div>
-        <button class="login-btn" onclick="doLogin()">Sign In</button>
+        <button type="button" class="login-btn" onclick="doLogin()">Sign In</button>
       </div>
       <div id="formRegister" style="display:none">
         <div class="form-group"><label class="form-label">Your name</label><input class="form-input" type="text" id="regName" placeholder="What shall we call you?"></div>
         <div class="form-group"><label class="form-label">Email address</label><input class="form-input" type="email" id="regEmail" placeholder="mama@example.com"></div>
         <div class="form-group"><label class="form-label">Password</label><input class="form-input" type="password" id="regPassword" placeholder="Create a password"></div>
-        <button class="login-btn" onclick="doRegister()">Create My Account</button>
+        <button type="button" class="login-btn" onclick="doRegister()">Create My Account</button>
       </div>
       <div class="login-divider">or</div>
-      <button class="guest-btn" onclick="continueAsGuest()">Continue as guest</button>
+      <button type="button" class="guest-btn" onclick="continueAsGuest()">Continue as guest</button>
       <p class="login-footer">Your data stays private. This app does not replace professional medical care.</p>
     </div>
   </div>
@@ -272,49 +339,93 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text-da
 
 <!-- SCREEN 3: SUBSCRIPTION -->
 <div class="screen" id="screenSubscribe">
-  <div class="sub-header">
-    <div style="font-size:40px;margin-bottom:12px;">🌸</div>
-    <h2>Choose your plan</h2>
-    <p>Start free — upgrade anytime when you are ready</p>
-  </div>
-  <div class="sub-cards">
-    <div class="sub-card">
-      <div class="sub-tier">Basic</div>
-      <div class="sub-name">Blossom</div>
-      <div class="sub-price">Free <span>forever</span></div>
-      <div class="sub-desc">Everything you need to begin your healing journey</div>
-      <ul class="sub-features">
-        <li><span class="fi">📔</span> Personal journal — unlimited entries</li>
-        <li><span class="fi">📋</span> EPDS screening test</li>
-        <li><span class="fi">📚</span> Full resource library</li>
-        <li><span class="fi">🌬️</span> Breathing exercises</li>
-        <li><span class="fi">✨</span> Daily motivational pop-ups</li>
-        <li><span class="fi">💜</span> Community circle — read only</li>
-        <li class="locked"><span class="fi">🔒</span> Community posting and replies</li>
-        <li class="locked"><span class="fi">🔒</span> Healthcare provider sharing</li>
-        <li class="locked"><span class="fi">🔒</span> Mood trend insights</li>
-      </ul>
-      <button class="sub-cta secondary" onclick="choosePlan('basic')">Start free</button>
-    </div>
-    <div class="sub-card featured">
-      <div class="sub-badge">Most popular</div>
-      <div class="sub-tier">Premium</div>
-      <div class="sub-name">Flourish</div>
-      <div class="sub-price">TBC <span>/ month</span></div>
-      <div class="sub-desc">Full support with community, insights and healthcare connection</div>
-      <ul class="sub-features">
-        <li><span class="fi">📔</span> Everything in Blossom</li>
-        <li><span class="fi">💜</span> Community posting, replies and reactions</li>
-        <li><span class="fi">📊</span> Mood trend charts and weekly insights</li>
-        <li><span class="fi">🏥</span> Share EPDS results with your healthcare provider</li>
-        <li><span class="fi">🌍</span> All 11 language affirmations and content</li>
-        <li><span class="fi">🔔</span> Gentle daily check-in reminders</li>
-        <li><span class="fi">⭐</span> Priority support from our care team</li>
-      </ul>
-      <button class="sub-cta primary" onclick="choosePlan('premium')">Coming soon — notify me</button>
+
+  <div class="sub-top">
+    <div class="sub-top-logo"><svg viewBox="0 0 50 50"><path d="M25 5C20 5 12 8 10 16C8 22 10 26 14 30C18 34 22 36 25 45C28 36 32 34 36 30C40 26 42 22 40 16C38 8 30 5 25 5Z"/></svg></div>
+    <h2>Your healing journey starts here</h2>
+    <p>Choose the plan that feels right for you — you can always upgrade later</p>
+    <div class="billing-toggle" id="billingToggle">
+      <span class="billing-label active" id="labelMonthly">Monthly</span>
+      <div class="toggle-track" id="toggleTrack" onclick="toggleBilling()">
+        <div class="toggle-thumb"></div>
+      </div>
+      <span class="billing-label" id="labelYearly">Yearly</span>
+      <span class="save-pill">SAVE 25%</span>
     </div>
   </div>
-  <div class="sub-skip"><a onclick="choosePlan('basic')">Skip for now — start with Blossom free</a></div>
+
+  <div class="sub-body">
+    <div class="sub-cards">
+
+      <!-- BLOSSOM - FREE -->
+      <div class="sub-card">
+        <div class="sub-card-header">
+          <div>
+            <div class="sub-tier">Basic</div>
+            <div class="sub-name">Blossom 🌸</div>
+          </div>
+          <div class="sub-price-block">
+            <div class="sub-price-free">Free</div>
+            <div class="sub-price-period">forever</div>
+          </div>
+        </div>
+        <div class="sub-divider"></div>
+        <div class="sub-desc">Everything you need to begin your healing journey, at no cost.</div>
+        <ul class="sub-features">
+          <li><span class="check yes">✓</span> 📔 Personal journal — unlimited entries</li>
+          <li><span class="check yes">✓</span> 📋 EPDS screening test</li>
+          <li><span class="check yes">✓</span> 📚 Full resource library</li>
+          <li><span class="check yes">✓</span> 🌬️ Breathing exercises</li>
+          <li><span class="check yes">✓</span> ✨ Daily motivational pop-ups</li>
+          <li><span class="check yes">✓</span> 💜 Community circle — read only</li>
+          <li class="locked"><span class="check no">✕</span> Community posting and replies</li>
+          <li class="locked"><span class="check no">✕</span> Mood trend charts and insights</li>
+          <li class="locked"><span class="check no">✕</span> Healthcare provider sharing</li>
+          <li class="locked"><span class="check no">✕</span> Daily check-in reminders</li>
+        </ul>
+        <button type="button" class="sub-cta secondary" onclick="choosePlan('basic')">Start free — no card needed</button>
+      </div>
+
+      <!-- FLOURISH - PREMIUM -->
+      <div class="sub-card featured">
+        <div class="sub-badge">Most popular</div>
+        <div class="sub-card-header">
+          <div>
+            <div class="sub-tier">Premium</div>
+            <div class="sub-name flourish">Flourish ✨</div>
+          </div>
+          <div class="sub-price-block">
+            <div class="sub-price" id="flourishPrice">R89</div>
+            <div class="sub-price-period" id="flourishPeriod">per month</div>
+            <div class="sub-price-alt" id="flourishAlt">R799/year saves R269</div>
+          </div>
+        </div>
+        <div class="sub-divider"></div>
+        <div class="sub-desc">Full support — community, insights and your healthcare team, all in one place.</div>
+        <ul class="sub-features">
+          <li><span class="check yes">✓</span> 🌸 Everything in Blossom, plus:</li>
+          <li><span class="check yes">✓</span> 💜 Community posting, replies and reactions</li>
+          <li><span class="check yes">✓</span> 📔 Unlimited journal entries</li>
+          <li><span class="check yes">✓</span> 📊 Mood trend charts and weekly insights</li>
+          <li><span class="check yes">✓</span> 🏥 Share EPDS results with your healthcare provider</li>
+          <li><span class="check yes">✓</span> 🔔 Gentle daily check-in reminders</li>
+          <li><span class="check yes">✓</span> ⭐ Priority support from our care team</li>
+        </ul>
+        <button type="button" class="sub-cta primary" id="flourishCta" onclick="choosePlan('premium')">Start Flourish</button>
+        <div class="sub-guarantee">🔒 Cancel anytime • Secure payment</div>
+      </div>
+
+    </div>
+
+    <div class="sub-trust">
+      <div class="trust-item"><div class="trust-icon">🛡️</div>Private &amp; secure</div>
+      <div class="trust-item"><div class="trust-icon">📡</div>Works offline</div>
+      <div class="trust-item"><div class="trust-icon">💳</div>Cancel anytime</div>
+      <div class="trust-item"><div class="trust-icon">🇿🇦</div>Made for SA moms</div>
+    </div>
+
+    <div class="sub-skip"><a onclick="choosePlan('basic')">Skip for now — continue with free Blossom</a></div>
+  </div>
 </div>
 
 <!-- SCREEN 4: MAIN APP -->
@@ -326,10 +437,10 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text-da
       <div class="popup-text" id="popupText">You are doing better than you think.</div>
       <div class="popup-lang" id="popupLang">English</div>
     </div>
-    <button class="popup-close" onclick="closePopup()">X</button>
+    <button type="button" class="popup-close" onclick="closePopup()">✕</button>
   </div>
   <div class="breathing-overlay" id="breathingOverlay">
-    <button class="breath-close" onclick="stopBreathing()">X</button>
+    <button type="button" class="breath-close" onclick="stopBreathing()">✕</button>
     <div class="breath-circle" id="breathCircle" onclick="runBreathCycle()">Breathe</div>
     <div class="breath-instruction" id="breathInstruction">Tap the circle to begin</div>
   </div>
@@ -341,7 +452,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text-da
     </div>
     <div class="header-right">
       <div class="header-pill" id="planBadge">Blossom</div>
-      <div class="header-avatar" id="userAvatar">M</div>
+      <div class="header-avatar" id="userAvatar" onclick="goTo('profile')">M</div>
     </div>
   </header>
   <div class="app-content">
@@ -368,7 +479,7 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text-da
         <div class="action-card rose" onclick="goTo('journal')"><div class="card-icon">📔</div><div class="card-title">Write in Journal</div><div class="card-sub">Express how you feel</div></div>
         <div class="action-card gold" onclick="goTo('epds')"><div class="card-icon">📋</div><div class="card-title">EPDS Check-in</div><div class="card-sub">How are you, really?</div></div>
         <div class="action-card" onclick="startBreathing()"><div class="card-icon">🌬️</div><div class="card-title">Breathing Exercise</div><div class="card-sub">Calm your mind now</div></div>
-        <div class="action-card" onclick="goTo('resources')"><div class="card-icon">📚</div><div class="card-title">Resources</div><div class="card-sub">Learn and find support</div></div>
+        <div class="action-card" onclick="triggerMotivation()"><div class="card-icon">✨</div><div class="card-title">Inspire Me</div><div class="card-sub">A gentle word for you</div></div>
       </div>
       <div class="section-title">Crisis Support — South Africa</div>
       <div class="hotline-card">
@@ -430,13 +541,186 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text-da
       </div>
       <div class="community-feed" id="communityFeed"></div>
     </div>
+
+    <!-- PROFILE PAGE -->
+    <div class="page" id="page-profile">
+      <div class="profile-hero">
+        <div class="profile-avatar-wrap">
+          <div class="profile-avatar-big" id="profileAvatarBig">M</div>
+          <div class="profile-avatar-edit" onclick="openEditSheet()">✏️</div>
+        </div>
+        <div class="profile-name-display" id="profileNameDisplay">Mama</div>
+        <div class="profile-email-display" id="profileEmailDisplay">Not signed in</div>
+        <div class="profile-plan-badge" id="profilePlanBadge">🌸 Blossom</div>
+      </div>
+
+      <div class="profile-stats">
+        <div class="profile-stat">
+          <div class="profile-stat-num" id="statJournalCount">0</div>
+          <div class="profile-stat-label">Journal entries</div>
+        </div>
+        <div class="profile-stat">
+          <div class="profile-stat-num" id="statDaysActive">1</div>
+          <div class="profile-stat-label">Days active</div>
+        </div>
+        <div class="profile-stat">
+          <div class="profile-stat-num" id="statEpdsCount">0</div>
+          <div class="profile-stat-label">EPDS check-ins</div>
+        </div>
+      </div>
+
+      <div class="profile-section">
+        <div class="profile-section-title">My account</div>
+        <div class="profile-card">
+          <div class="profile-row" onclick="openEditSheet()">
+            <div class="profile-row-icon rose">👤</div>
+            <div class="profile-row-body">
+              <div class="profile-row-title">Edit my profile</div>
+              <div class="profile-row-sub">Name, email and password</div>
+            </div>
+            <div class="profile-row-right">›</div>
+          </div>
+          <div class="profile-row" onclick="goTo('profile')">
+            <div class="profile-row-icon gold">🌸</div>
+            <div class="profile-row-body">
+              <div class="profile-row-title">My plan</div>
+              <div class="profile-row-sub">View or upgrade your subscription</div>
+            </div>
+            <div class="profile-row-value" id="profilePlanValue">Blossom</div>
+          </div>
+          <div class="profile-row" onclick="showScreen('screenSubscribe')">
+            <div class="profile-row-icon purple">✨</div>
+            <div class="profile-row-body">
+              <div class="profile-row-title">Upgrade to Flourish</div>
+              <div class="profile-row-sub">Unlock community, insights and more</div>
+            </div>
+            <div class="profile-row-right">›</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-section">
+        <div class="profile-section-title">My wellness</div>
+        <div class="profile-card">
+          <div class="profile-row" onclick="goTo('journal')">
+            <div class="profile-row-icon rose">📔</div>
+            <div class="profile-row-body">
+              <div class="profile-row-title">My journal</div>
+              <div class="profile-row-sub" id="profileLastJournal">No entries yet</div>
+            </div>
+            <div class="profile-row-right">›</div>
+          </div>
+          <div class="profile-row" onclick="goTo('epds')">
+            <div class="profile-row-icon sage">📋</div>
+            <div class="profile-row-body">
+              <div class="profile-row-title">EPDS history</div>
+              <div class="profile-row-sub" id="profileLastEpds">No test taken yet</div>
+            </div>
+            <div class="profile-row-right">›</div>
+          </div>
+          <div class="profile-row" onclick="startBreathing()">
+            <div class="profile-row-icon sage">🌬️</div>
+            <div class="profile-row-body">
+              <div class="profile-row-title">Breathing exercise</div>
+              <div class="profile-row-sub">Start a calming session now</div>
+            </div>
+            <div class="profile-row-right">›</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-section">
+        <div class="profile-section-title">Preferences</div>
+        <div class="profile-card">
+          <div class="profile-row" onclick="showScreen('screenLang')">
+            <div class="profile-row-icon purple">🌐</div>
+            <div class="profile-row-body">
+              <div class="profile-row-title">Language</div>
+              <div class="profile-row-sub">Change your preferred language</div>
+            </div>
+            <div class="profile-row-value" id="profileLangValue">English</div>
+          </div>
+          <div class="profile-row">
+            <div class="profile-row-icon gold">🔔</div>
+            <div class="profile-row-body">
+              <div class="profile-row-title">Check-in reminders</div>
+              <div class="profile-row-sub">Flourish feature</div>
+            </div>
+            <div class="profile-row-value">Flourish ✨</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-section">
+        <div class="profile-section-title">Support</div>
+        <div class="profile-card">
+          <div class="profile-row">
+            <div class="profile-row-icon rose">💬</div>
+            <div class="profile-row-body">
+              <div class="profile-row-title">Contact our care team</div>
+              <div class="profile-row-sub">We are here for you</div>
+            </div>
+            <div class="profile-row-right">›</div>
+          </div>
+          <div class="profile-row">
+            <div class="profile-row-icon sage">🔒</div>
+            <div class="profile-row-body">
+              <div class="profile-row-title">Privacy policy</div>
+              <div class="profile-row-sub">How we protect your data</div>
+            </div>
+            <div class="profile-row-right">›</div>
+          </div>
+          <div class="profile-row">
+            <div class="profile-row-icon gold">📄</div>
+            <div class="profile-row-body">
+              <div class="profile-row-title">Terms of use</div>
+              <div class="profile-row-sub">AGPL-3.0 open source project</div>
+            </div>
+            <div class="profile-row-right">›</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-section" style="margin-bottom:8px;">
+        <div class="profile-section-title">Crisis support</div>
+        <div class="hotline-card" style="margin:0 0 0;">
+          <div class="hotline-label">24hr Helpline — Free Call</div>
+          <div class="hotline-name">SADAG Mental Health Crisis Line</div>
+          <div class="hotline-number">0800 456 789</div>
+          <div class="hotline-desc">Suicide Crisis: 0800 567 567 • SMS: 31393</div>
+        </div>
+      </div>
+
+      <button type="button" class="logout-btn" onclick="doLogout()">Sign out</button>
+    </div>
   </div>
+
+  <!-- EDIT PROFILE SHEET -->
+  <div class="profile-edit-overlay" id="editOverlay" onclick="closeEditSheet(event)">
+    <div class="profile-edit-sheet">
+      <div class="edit-sheet-title">Edit my profile</div>
+      <div class="edit-field">
+        <label class="edit-label">Your name</label>
+        <input type="text" class="edit-input" id="editName" placeholder="What shall we call you?">
+      </div>
+      <div class="edit-field">
+        <label class="edit-label">Email address</label>
+        <input type="email" class="edit-input" id="editEmail" placeholder="mama@example.com">
+      </div>
+      <div class="edit-actions">
+        <button type="button" class="edit-cancel" onclick="closeEditSheet()">Cancel</button>
+        <button type="button" class="edit-save" onclick="saveProfile()">Save changes</button>
+      </div>
+    </div>
+  </div>
+
   <nav class="bottom-nav">
-    <button class="nav-item active" id="nav-home" onclick="goTo('home')"><span class="nav-icon">🏠</span><span class="nav-label">Home</span></button>
-    <button class="nav-item" id="nav-journal" onclick="goTo('journal')"><span class="nav-icon">📔</span><span class="nav-label">Journal</span></button>
-    <button class="nav-item" id="nav-epds" onclick="goTo('epds')"><span class="nav-icon">📋</span><span class="nav-label">EPDS</span></button>
-    <button class="nav-item" id="nav-resources" onclick="goTo('resources')"><span class="nav-icon">📚</span><span class="nav-label">Resources</span></button>
-    <button class="nav-item" id="nav-community" onclick="goTo('community')"><span class="nav-icon">💜</span><span class="nav-label">Circle</span></button>
+    <button type="button" class="nav-item active" id="nav-home" onclick="goTo('home')"><span class="nav-icon">🏠</span><span class="nav-label">Home</span></button>
+    <button type="button" class="nav-item" id="nav-journal" onclick="goTo('journal')"><span class="nav-icon">📔</span><span class="nav-label">Journal</span></button>
+    <button type="button" class="nav-item" id="nav-epds" onclick="goTo('epds')"><span class="nav-icon">📋</span><span class="nav-label">EPDS</span></button>
+    <button type="button" class="nav-item" id="nav-resources" onclick="goTo('resources')"><span class="nav-icon">📚</span><span class="nav-label">Resources</span></button>
+    <button type="button" class="nav-item" id="nav-community" onclick="goTo('community')"><span class="nav-icon">💜</span><span class="nav-label">Circle</span></button>
+    <button type="button" class="nav-item" id="nav-profile" onclick="goTo('profile')"><span class="nav-icon">👤</span><span class="nav-label">Profile</span></button>
   </nav>
 </div>
 
@@ -499,13 +783,12 @@ var popupTimer=null;
 var popupIndex=0;
 
 document.addEventListener('DOMContentLoaded',function(){
-  var btns=document.querySelectorAll('.lang-btn');
-  btns.forEach(function(btn){
-    btn.addEventListener('click',function(){
-      btns.forEach(function(b){b.classList.remove('active');});
-      btn.classList.add('active');
-      currentLang=btn.getAttribute('data-lang');
-    });
+  document.getElementById('langGrid').addEventListener('click',function(e){
+    var btn=e.target.closest('.lang-btn');
+    if(!btn)return;
+    document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.remove('active');});
+    btn.classList.add('active');
+    currentLang=btn.getAttribute('data-lang');
   });
   document.getElementById('langContinueBtn').addEventListener('click',function(){
     showScreen('screenLogin');
@@ -555,13 +838,98 @@ function continueAsGuest(){setUser('Mama','basic');showScreen('screenSubscribe')
 
 function setUser(name,plan){
   localStorage.setItem('ym_user',JSON.stringify({name:name,plan:plan}));
-  document.getElementById('userAvatar').textContent=name.charAt(0).toUpperCase();
+  var initial=name.charAt(0).toUpperCase();
+  document.getElementById('userAvatar').textContent=initial;
   document.getElementById('heroName').textContent=name+' ♡';
+  document.getElementById('profileAvatarBig').textContent=initial;
+  document.getElementById('profileNameDisplay').textContent=name;
+  document.getElementById('planBadge').textContent=plan==='premium'?'✨ Flourish':'🌸 Blossom';
+  document.getElementById('profilePlanBadge').textContent=plan==='premium'?'✨ Flourish':'🌸 Blossom';
+  document.getElementById('profilePlanValue').textContent=plan==='premium'?'Flourish':'Blossom';
+}
+
+function refreshProfileStats(){
+  var textEntries=journalEntries.filter(function(e){return e.type==='text';});
+  document.getElementById('statJournalCount').textContent=textEntries.length;
+  var epdsData=localStorage.getItem('ym_last_epds');
+  if(epdsData){
+    var e=JSON.parse(epdsData);
+    document.getElementById('statEpdsCount').textContent='1';
+    document.getElementById('profileLastEpds').textContent='Last score: '+e.score+' — '+new Date(e.date).toLocaleDateString('en-ZA');
+  }
+  if(textEntries.length>0){
+    document.getElementById('profileLastJournal').textContent=textEntries.length+' entr'+(textEntries.length===1?'y':'ies')+' written';
+  }
+  var u=JSON.parse(localStorage.getItem('ym_user')||'{}');
+  if(u.email){document.getElementById('profileEmailDisplay').textContent=u.email;}
+  var langMap={en:'English',zu:'isiZulu',xh:'isiXhosa',af:'Afrikaans',st:'Sesotho',tn:'Setswana',ts:'Xitsonga',ve:'Tshivenḓa',ss:'siSwati',nd:'isiNdebele (N)',nr:'isiNdebele (S)'};
+  document.getElementById('profileLangValue').textContent=langMap[currentLang]||'English';
+}
+
+function openEditSheet(){
+  var u=JSON.parse(localStorage.getItem('ym_user')||'{}');
+  document.getElementById('editName').value=u.name||'';
+  document.getElementById('editEmail').value=u.email||'';
+  document.getElementById('editOverlay').classList.add('show');
+}
+
+function closeEditSheet(e){
+  if(!e||e.target===document.getElementById('editOverlay')){
+    document.getElementById('editOverlay').classList.remove('show');
+  }
+}
+
+function saveProfile(){
+  var name=document.getElementById('editName').value.trim()||'Mama';
+  var email=document.getElementById('editEmail').value.trim();
+  var u=JSON.parse(localStorage.getItem('ym_user')||'{}');
+  u.name=name; u.email=email;
+  localStorage.setItem('ym_user',JSON.stringify(u));
+  setUser(name,u.plan||'basic');
+  if(email)document.getElementById('profileEmailDisplay').textContent=email;
+  document.getElementById('editOverlay').classList.remove('show');
+}
+
+function doLogout(){
+  if(confirm('Sign out of Yummy Mummy?')){
+    localStorage.removeItem('ym_user');
+    localStorage.removeItem('ym_plan');
+    showScreen('screenLang');
+  }
+}
+
+var billingYearly=false;
+
+function toggleBilling(){
+  billingYearly=!billingYearly;
+  var track=document.getElementById('toggleTrack');
+  var lm=document.getElementById('labelMonthly');
+  var ly=document.getElementById('labelYearly');
+  var price=document.getElementById('flourishPrice');
+  var period=document.getElementById('flourishPeriod');
+  var alt=document.getElementById('flourishAlt');
+  var cta=document.getElementById('flourishCta');
+  if(billingYearly){
+    track.classList.add('yearly');
+    lm.classList.remove('active'); ly.classList.add('active');
+    price.textContent='R799';
+    period.textContent='per year';
+    alt.textContent='Only R66.58/month — save R269';
+    cta.textContent='Start Flourish yearly';
+  } else {
+    track.classList.remove('yearly');
+    lm.classList.add('active'); ly.classList.remove('active');
+    price.textContent='R89';
+    period.textContent='per month';
+    alt.textContent='R799/year saves R269';
+    cta.textContent='Start Flourish';
+  }
 }
 
 function choosePlan(plan){
-  localStorage.setItem('ym_plan',plan);
-  document.getElementById('planBadge').textContent=plan==='premium'?'⭐ Flourish':'🌸 Blossom';
+  var billing=billingYearly?'yearly':'monthly';
+  localStorage.setItem('ym_plan',JSON.stringify({tier:plan,billing:billing}));
+  document.getElementById('planBadge').textContent=plan==='premium'?'✨ Flourish':'🌸 Blossom';
   showScreen('screenApp');
   setTimeout(showPopup,10000);
 }
@@ -581,6 +949,11 @@ function closePopup(){
   document.getElementById('motivationPopup').classList.remove('show');
 }
 
+function triggerMotivation(){
+  clearTimeout(popupTimer);
+  showPopup();
+}
+
 function goTo(page){
   document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
   document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active');});
@@ -588,6 +961,7 @@ function goTo(page){
   var nav=document.getElementById('nav-'+page);
   if(nav)nav.classList.add('active');
   document.querySelector('.app-content').scrollTop=0;
+  if(page==='profile')refreshProfileStats();
 }
 
 function updateGreeting(){
@@ -711,4 +1085,4 @@ function stopBreathing(){
 if('serviceWorker'in navigator){navigator.serviceWorker.register('sw.js').catch(function(){});}
 </script>
 </body>
-</html>
+                                                                        </html>
