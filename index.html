@@ -15,7 +15,7 @@
 body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text-dark);min-height:100vh;overflow-x:hidden;}
 .screen{display:none;min-height:100vh;}
 .screen.active{display:block;}
-#screenLang{background:linear-gradient(160deg,#F9E4EF 0%,#FDF0F5 40%,#FFF3E8 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px;}
+#screenLang{background:linear-gradient(160deg,#F9E4EF 0%,#FDF0F5 40%,#FFF3E8 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px;min-height:100vh;overflow-y:auto;}
 .lang-logo{width:80px;height:80px;background:var(--rose);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(181,83,122,0.35);margin-bottom:16px;animation:pulse 2s ease-in-out infinite;}
 .lang-logo svg{width:44px;height:44px;fill:white;}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
@@ -23,9 +23,10 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text-da
 .tagline{font-size:13px;color:var(--text-mid);margin-bottom:28px;}
 .lang-prompt{font-size:13px;font-weight:700;color:var(--text-mid);margin-bottom:14px;}
 .lang-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:360px;margin-bottom:32px;}
-.lang-btn{padding:9px 18px;border-radius:24px;border:2px solid var(--rose);background:white;color:var(--rose);font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;transition:background 0.15s,color 0.15s;}
-.lang-btn.active{background:var(--rose);color:white;}
-.lang-continue{padding:15px 52px;background:var(--rose);color:white;border:none;border-radius:32px;font-size:16px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;box-shadow:0 6px 20px rgba(181,83,122,0.4);}
+.lang-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:360px;margin-bottom:32px;-webkit-tap-highlight-color:rgba(181,83,122,0.2);}
+.lang-btn{padding:10px 20px;border-radius:24px;border:2px solid var(--rose);background:white;color:var(--rose);font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;transition:background 0.15s,color 0.15s;touch-action:manipulation;-webkit-appearance:none;appearance:none;min-height:44px;user-select:none;}
+.lang-btn.active,.lang-btn:active{background:var(--rose);color:white;}
+.lang-continue{padding:15px 52px;background:var(--rose);color:white;border:none;border-radius:32px;font-size:16px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;box-shadow:0 6px 20px rgba(181,83,122,0.4);touch-action:manipulation;-webkit-appearance:none;appearance:none;min-height:52px;}
 #screenLogin{background:linear-gradient(160deg,#F9E4EF 0%,#FDF0F5 50%,#FFF3E8 100%);display:flex;align-items:center;justify-content:center;padding:40px 24px;}
 .login-card{background:white;border-radius:28px;padding:36px 28px;width:100%;max-width:380px;box-shadow:0 12px 48px rgba(181,83,122,0.15);border:1px solid var(--border);}
 .login-logo{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
@@ -471,28 +472,28 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text-da
         <div class="mood-pill" onclick="selectMood(this,'🥰')">🥰 Loving</div>
       </div>
       <div class="affirmation-strip">
-        <div class="aff-label">Today's Affirmation</div>
+        <div class="aff-label" data-i18n="aff_label">Today's Affirmation</div>
         <div class="aff-text" id="dailyAffirmation">I am enough. I am learning. I am loved.</div>
       </div>
-      <div class="section-title">What do you need today?</div>
+      <div class="section-title" data-i18n="home_need">What do you need today?</div>
       <div class="quick-actions">
-        <div class="action-card rose" onclick="goTo('journal')"><div class="card-icon">📔</div><div class="card-title">Write in Journal</div><div class="card-sub">Express how you feel</div></div>
-        <div class="action-card gold" onclick="goTo('epds')"><div class="card-icon">📋</div><div class="card-title">EPDS Check-in</div><div class="card-sub">How are you, really?</div></div>
-        <div class="action-card" onclick="startBreathing()"><div class="card-icon">🌬️</div><div class="card-title">Breathing Exercise</div><div class="card-sub">Calm your mind now</div></div>
-        <div class="action-card" onclick="triggerMotivation()"><div class="card-icon">✨</div><div class="card-title">Inspire Me</div><div class="card-sub">A gentle word for you</div></div>
+        <div class="action-card rose" onclick="goTo('journal')"><div class="card-icon">📔</div><div class="card-title" data-i18n="nav_journal">Write in Journal</div><div class="card-sub" data-i18n="journal_sub">Express how you feel</div></div>
+        <div class="action-card gold" onclick="goTo('epds')"><div class="card-icon">📋</div><div class="card-title" data-i18n="nav_epds">EPDS Check-in</div><div class="card-sub" data-i18n="epds_sub">How are you, really?</div></div>
+        <div class="action-card" onclick="startBreathing()"><div class="card-icon">🌬️</div><div class="card-title" data-i18n="breathe_title">Breathing Exercise</div><div class="card-sub" data-i18n="breathe_sub">Calm your mind now</div></div>
+        <div class="action-card" onclick="triggerMotivation()"><div class="card-icon">✨</div><div class="card-title" data-i18n="inspire_title">Inspire Me</div><div class="card-sub" data-i18n="inspire_sub">A gentle word for you</div></div>
       </div>
-      <div class="section-title">Crisis Support — South Africa</div>
+      <div class="section-title" data-i18n="crisis_title">Crisis Support — South Africa</div>
       <div class="hotline-card">
-        <div class="hotline-label">24hr Helpline</div>
+        <div class="hotline-label" data-i18n="hotline_label">24hr Helpline</div>
         <div class="hotline-name">SADAG — Mental Health Crisis Line</div>
         <div class="hotline-number">0800 456 789</div>
-        <div class="hotline-desc">Free call • Available 24 hours • Confidential</div>
+        <div class="hotline-desc" data-i18n="hotline_desc">Free call • Available 24 hours • Confidential</div>
       </div>
     </div>
     <div class="page" id="page-journal">
-      <div class="journal-header"><h2>My Journal</h2><p>A private space just for you — no judgement, only love</p></div>
+      <div class="journal-header"><h2 data-i18n="journal_title">My Journal</h2><p data-i18n="journal_desc">A private space just for you — no judgement, only love</p></div>
       <div class="journal-new">
-        <textarea class="journal-textarea" id="journalText" placeholder="How are you feeling today, Mama? Write anything — there are no wrong words here..."></textarea>
+        <textarea class="journal-textarea" id="journalText" data-i18n-placeholder="journal_placeholder" placeholder="How are you feeling today, Mama? Write anything — there are no wrong words here..."></textarea>
         <div class="journal-meta">
           <div class="journal-mood-btns">
             <span class="jmood" onclick="setJMood(this,'😊')">😊</span>
@@ -501,27 +502,27 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text-da
             <span class="jmood" onclick="setJMood(this,'🥰')">🥰</span>
             <span class="jmood" onclick="setJMood(this,'😴')">😴</span>
           </div>
-          <button class="save-btn" onclick="saveJournal()">Save</button>
+          <button class="save-btn" onclick="saveJournal()" data-i18n="save_btn">Save</button>
         </div>
       </div>
-      <div class="section-title">Previous entries</div>
+      <div class="section-title" data-i18n="prev_entries">Previous entries</div>
       <div class="journal-entries" id="journalEntries"></div>
     </div>
     <div class="page" id="page-epds">
-      <div class="epds-header"><h2>EPDS Screening</h2><p>The Edinburgh Postnatal Depression Scale helps identify how you have been feeling. This is not a diagnosis — it helps you and your healthcare provider.</p></div>
+      <div class="epds-header"><h2 data-i18n="epds_title">EPDS Screening</h2><p data-i18n="epds_desc">The Edinburgh Postnatal Depression Scale helps identify how you have been feeling. This is not a diagnosis — it helps you and your healthcare provider.</p></div>
       <div id="epdsFormContainer" class="epds-form"></div>
       <div class="epds-result" id="epdsResult">
         <div class="epds-score-circle" id="epdsScoreCircle"><span id="epdsScoreNum">0</span></div>
         <h3 id="epdsResultTitle">Your result</h3>
         <p id="epdsResultText"></p>
-        <button class="epds-restart" onclick="resetEpds()">Take the test again</button>
+        <button class="epds-restart" onclick="resetEpds()" data-i18n="epds_restart">Take the test again</button>
       </div>
     </div>
     <div class="page" id="page-resources">
-      <div class="resources-header"><h2>Resources and Education</h2><p>Knowledge is power — learn about postpartum depression to care for yourself and others</p></div>
+      <div class="resources-header"><h2 data-i18n="resources_title">Resources and Education</h2><p data-i18n="resources_desc">Knowledge is power — learn about postpartum depression to care for yourself and others</p></div>
       <div class="resource-section">
         <div class="hotline-card" style="margin:0 0 16px;">
-          <div class="hotline-label">Emergency</div>
+          <div class="hotline-label" data-i18n="emergency">Emergency</div>
           <div class="hotline-name">SADAG Crisis Line</div>
           <div class="hotline-number">0800 456 789</div>
           <div class="hotline-desc">Suicide Crisis: 0800 567 567 • SMS: 31393</div>
@@ -530,13 +531,13 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text-da
       </div>
     </div>
     <div class="page" id="page-community">
-      <div class="community-header"><h2>Our Circle</h2><p>A safe, supportive space — you are not alone</p></div>
-      <div class="community-rules">This is a judgement-free zone. Be kind. Be gentle. Posts are anonymous by default.</div>
+      <div class="community-header"><h2 data-i18n="community_title">Our Circle</h2><p data-i18n="community_desc">A safe, supportive space — you are not alone</p></div>
+      <div class="community-rules" data-i18n="community_rules">This is a judgement-free zone. Be kind. Be gentle. Posts are anonymous by default.</div>
       <div class="post-input-card">
-        <textarea class="post-textarea" id="communityPostText" placeholder="Share how you are feeling, ask a question, or offer encouragement..."></textarea>
+        <textarea class="post-textarea" id="communityPostText" data-i18n-placeholder="community_placeholder" placeholder="Share how you are feeling, ask a question, or offer encouragement..."></textarea>
         <div class="post-actions">
-          <label class="anon-toggle"><input type="checkbox" id="anonCheck" checked> Post anonymously</label>
-          <button class="post-btn" onclick="submitPost()">Share</button>
+          <label class="anon-toggle"><input type="checkbox" id="anonCheck" checked> <span data-i18n="post_anon">Post anonymously</span></label>
+          <button class="post-btn" onclick="submitPost()" data-i18n="share_btn">Share</button>
         </div>
       </div>
       <div class="community-feed" id="communityFeed"></div>
@@ -715,17 +716,396 @@ body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text-da
   </div>
 
   <nav class="bottom-nav">
-    <button type="button" class="nav-item active" id="nav-home" onclick="goTo('home')"><span class="nav-icon">🏠</span><span class="nav-label">Home</span></button>
-    <button type="button" class="nav-item" id="nav-journal" onclick="goTo('journal')"><span class="nav-icon">📔</span><span class="nav-label">Journal</span></button>
-    <button type="button" class="nav-item" id="nav-epds" onclick="goTo('epds')"><span class="nav-icon">📋</span><span class="nav-label">EPDS</span></button>
-    <button type="button" class="nav-item" id="nav-resources" onclick="goTo('resources')"><span class="nav-icon">📚</span><span class="nav-label">Resources</span></button>
-    <button type="button" class="nav-item" id="nav-community" onclick="goTo('community')"><span class="nav-icon">💜</span><span class="nav-label">Circle</span></button>
-    <button type="button" class="nav-item" id="nav-profile" onclick="goTo('profile')"><span class="nav-icon">👤</span><span class="nav-label">Profile</span></button>
+    <button type="button" class="nav-item active" id="nav-home" onclick="goTo('home')"><span class="nav-icon">🏠</span><span class="nav-label" data-i18n="nav_home">Home</span></button>
+    <button type="button" class="nav-item" id="nav-journal" onclick="goTo('journal')"><span class="nav-icon">📔</span><span class="nav-label" data-i18n="nav_journal_tab">Journal</span></button>
+    <button type="button" class="nav-item" id="nav-epds" onclick="goTo('epds')"><span class="nav-icon">📋</span><span class="nav-label" data-i18n="nav_epds_tab">EPDS</span></button>
+    <button type="button" class="nav-item" id="nav-resources" onclick="goTo('resources')"><span class="nav-icon">📚</span><span class="nav-label" data-i18n="nav_resources_tab">Resources</span></button>
+    <button type="button" class="nav-item" id="nav-community" onclick="goTo('community')"><span class="nav-icon">💜</span><span class="nav-label" data-i18n="nav_community_tab">Circle</span></button>
+    <button type="button" class="nav-item" id="nav-profile" onclick="goTo('profile')"><span class="nav-icon">👤</span><span class="nav-label" data-i18n="nav_profile_tab">Profile</span></button>
   </nav>
 </div>
 
 <script>
-var MOTIVATIONS=[
+var T={
+  en:{
+    lang_prompt:'Choose your language',lang_continue:'Begin my journey ♡',
+    welcome:'Welcome, Mama',login_sub:'Sign in to save your progress and connect with our community',
+    sign_in:'Sign In',create_acc:'Create Account',email:'Email address',password:'Password',
+    your_name:'Your name',create_btn:'Create My Account',signin_btn:'Sign In',
+    or:'or',guest_btn:'Continue as guest',privacy_note:'Your data stays private. This app does not replace professional medical care.',
+    choose_plan:'Your healing journey starts here',plan_sub:'Choose the plan that feels right — you can always upgrade later',
+    monthly:'Monthly',yearly:'Yearly',skip_plan:'Skip for now — continue with free Blossom',
+    popup_label:'A moment for you',
+    nav_home:'Home',nav_journal_tab:'Journal',nav_epds_tab:'EPDS',nav_resources_tab:'Resources',nav_community_tab:'Circle',nav_profile_tab:'Profile',
+    greeting_morning:'Good morning,',greeting_afternoon:'Good afternoon,',greeting_evening:'Good evening,',
+    aff_label:"Today's Affirmation",home_need:'What do you need today?',
+    nav_journal:'Write in Journal',journal_sub:'Express how you feel',
+    nav_epds:'EPDS Check-in',epds_sub:'How are you, really?',
+    breathe_title:'Breathing Exercise',breathe_sub:'Calm your mind now',
+    inspire_title:'Inspire Me',inspire_sub:'A gentle word for you',
+    crisis_title:'Crisis Support — South Africa',hotline_label:'24hr Helpline',hotline_desc:'Free call • Available 24 hours • Confidential',
+    journal_title:'My Journal',journal_desc:'A private space just for you — no judgement, only love',
+    journal_placeholder:'How are you feeling today, Mama? Write anything — there are no wrong words here...',
+    save_btn:'Save',prev_entries:'Previous entries',
+    epds_title:'EPDS Screening',epds_desc:'The Edinburgh Postnatal Depression Scale helps identify how you have been feeling. This is not a diagnosis — it helps you and your healthcare provider.',
+    epds_restart:'Take the test again',epds_submit:'See my results',epds_question:'Question',epds_of:'of',
+    resources_title:'Resources and Education',resources_desc:'Knowledge is power — learn about postpartum depression to care for yourself and others',
+    emergency:'Emergency',
+    community_title:'Our Circle',community_desc:'A safe, supportive space — you are not alone',
+    community_rules:'This is a judgement-free zone. Be kind. Be gentle. Posts are anonymous by default.',
+    community_placeholder:'Share how you are feeling, ask a question, or offer encouragement...',
+    post_anon:'Post anonymously',share_btn:'Share',
+    mood_good:'Good',mood_low:'Low',mood_anxious:'Anxious',mood_irritable:'Irritable',mood_tired:'Tired',mood_loving:'Loving',
+    breathe_tap:'Tap the circle to begin',breathe_in:'Breathe in',breathe_hold:'Hold',breathe_out:'Breathe out',breathe_rest:'Rest',
+    offline_msg:'You are offline — all content is available without data'
+  },
+  zu:{
+    lang_prompt:'Khetha ulimi lwakho',lang_continue:'Qala uhambo lwami ♡',
+    welcome:'Wamukelekile, Mama',login_sub:'Ngena ukuze ulondoloze inqubekela yakho',
+    sign_in:'Ngena',create_acc:'Dala i-Akhawunti',email:'Ikheli le-imeyili',password:'Iphasiwedi',
+    your_name:'Igama lakho',create_btn:'Dala i-Akhawunti Yami',signin_btn:'Ngena',
+    or:'noma',guest_btn:'Qhubeka njengesihambi',privacy_note:'Idatha yakho ihlala iyimfihlo.',
+    choose_plan:'Uhambo lwakho lokuphulukiswa luqala lapha',plan_sub:'Khetha uhlelo okulungele wena',
+    monthly:'Nyanga yonke',yearly:'Unyaka wonke',skip_plan:'Dlula — qhubeka nge-Blossom yamahhala',
+    popup_label:'Umzuzwana wakho',
+    nav_home:'Ikhaya',nav_journal_tab:'Ijenali',nav_epds_tab:'EPDS',nav_resources_tab:'Izinsiza',nav_community_tab:'Inhlangano',nav_profile_tab:'Iphrofayili',
+    greeting_morning:'Sawubona ekuseni,',greeting_afternoon:'Sawubona emini,',greeting_evening:'Sawubona kusihlwa,',
+    aff_label:'Isiqinisekiso sanamuhla',home_need:'Udingani namuhla?',
+    nav_journal:'Bhala kwiJenali',journal_sub:'Khuluma indaba yakho',
+    nav_epds:'Hlola i-EPDS',epds_sub:'Uphila kanjani, ngempela?',
+    breathe_title:'Umshini Wokuphefumula',breathe_sub:'Thulisa umqondo wakho',
+    inspire_title:'Ngikhuthaze',inspire_sub:'Izwi elithambile kuwe',
+    crisis_title:'Usizo lokuphuthumela — Mzansi Afrika',hotline_label:'Usizo lwamahhala 24 amahora',hotline_desc:'Ukushayela kwamahhala • Amahora angu-24 • Kuyimfihlo',
+    journal_title:'IJenali Yami',journal_desc:'Indawo eyimfihlo — akukho ukwahlulela, uthando kuphela',
+    journal_placeholder:'Uzizwa kanjani namuhla, Mama? Bhala noma yini...',
+    save_btn:'Gcina',prev_entries:'Izingeno zangaphambilini',
+    epds_title:'Ukuhlolwa kwe-EPDS',epds_desc:'I-Edinburgh Postnatal Depression Scale ihlola indlela ozizwa ngayo. Akuzona izingcingo — kusiza wena nomhlinzeki wakho.',
+    epds_restart:'Thatha uhlelo futhi',epds_submit:'Bona imiphumela yami',epds_question:'Umbuzo',epds_of:'ku',
+    resources_title:'Izinsiza Nezemfundo',resources_desc:'Ulwazi amandla — funda nge-PPD ukuze uzinakekele',
+    emergency:'Uphuthu',
+    community_title:'Inhlangano Yethu',community_desc:'Indawo ephephile — awuwedwa',
+    community_rules:'Akukho ukwahlulela lapha. Yiba nomusa. Izithunzi ziyimfihlo ngokuzenzakalelayo.',
+    community_placeholder:'Yabelana ngendlela ozizwa ngayo noma ukhuthaze omunye...',
+    post_anon:'Thunyelwa ngokuzimela',share_btn:'Yabelana',
+    mood_good:'Ngiyajabula',mood_low:'Ngidabukile',mood_anxious:'Ngixhalabile',mood_irritable:'Ngithukuthele',mood_tired:'Ngikhathele',mood_loving:'Ngiyathanda',
+    breathe_tap:'Chofoza indingiliza ukuqala',breathe_in:'Phefumula ungene',breathe_hold:'Bamba',breathe_out:'Khipha umoya',breathe_rest:'Phumula',
+    offline_msg:'Awuxhumekile — yonke imimukelo itholakala ngaphandle kwedatha'
+  },
+  xh:{
+    lang_prompt:'Khetha ulwimi lwakho',lang_continue:'Qala uhambo lwam ♡',
+    welcome:'Wamkelekile, Mama',login_sub:'Ngena ukugcina inkqubela yakho',
+    sign_in:'Ngena',create_acc:'Yenza i-Akhawunti',email:'Idilesi ye-imeyili',password:'Iphasiwedi',
+    your_name:'Igama lakho',create_btn:'Yenza i-Akhawunti Yam',signin_btn:'Ngena',
+    or:'okanye',guest_btn:'Qhubeka njengesihambeli',privacy_note:'Idatha yakho ihlala iyimfihlo.',
+    choose_plan:'Uhambo lwakho lokuphila luqala apha',plan_sub:'Khetha icebo elilungeleyo kuwe',
+    monthly:'Yonkeinyanga',yearly:'Unyaka wonke',skip_plan:'Dlula — qhubeka nge-Blossom yasimahla',
+    popup_label:'Umzuzu wakho',
+    nav_home:'Ekhaya',nav_journal_tab:'Ijenali',nav_epds_tab:'EPDS',nav_resources_tab:'Izixhobo',nav_community_tab:'Inhlangano',nav_profile_tab:'Iprofayile',
+    greeting_morning:'Molo ngentseni,',greeting_afternoon:'Molo emva kwemini,',greeting_evening:'Molo ngokuhlwa,',
+    aff_label:'Isiqinisekiso sanamhlanje',home_need:'Ufuna ntoni namhlanje?',
+    nav_journal:'Bhala kwiJenali',journal_sub:'Thetha ibali lakho',
+    nav_epds:'Hlola i-EPDS',epds_sub:'Uphila njani, ngokwenene?',
+    breathe_title:'Uqeqesho Lokuphefumla',breathe_sub:'Thomalalisa ingqondo yakho',
+    inspire_title:'Ndixhase',inspire_sub:'Igama elithambileyo kuwe',
+    crisis_title:'Uncedo olukhawulezayo — Mzantsi Afrika',hotline_label:'Uncedo lwamahora angama-24',hotline_desc:'Umnxeba wasimahla • Amahora angama-24 • Iyimfihlo',
+    journal_title:'IJenali Yam',journal_desc:'Indawo eyimfihlo — akukho mgwebo, uthando kuphela',
+    journal_placeholder:'Uziva njani namhlanje, Mama? Bhala nantoni na...',
+    save_btn:'Gcina',prev_entries:'Iingeniso zangaphambili',
+    epds_title:'Uvavanyo lwe-EPDS',epds_desc:'I-Edinburgh Postnatal Depression Scale inceda ukubona indlela oziva ngayo. Ayisiso isigwebo — inceda wena nomniki-nqanaba-wempilo wakho.',
+    epds_restart:'Thabatha uvavanyo kwakhona',epds_submit:'Bona iziphumo zam',epds_question:'Umbuzo',epds_of:'ku',
+    resources_title:'Izixhobo Nezemfundo',resources_desc:'Ulwazi ngamandla — funda nge-PPD ukuzinakekela',
+    emergency:'Iyashushu',
+    community_title:'Inhlangano Yethu',community_desc:'Indawo ekhuselekileyo — awuwedwa',
+    community_rules:'Akukho mgwebo apha. Yiba novelwano. Amagama afihliwe ngokuzenzakalelayo.',
+    community_placeholder:'Yabelana ngendlela oziva ngayo okanye ukhuthaze umnye...',
+    post_anon:'Thumela ngokuzimela',share_btn:'Yabelana',
+    mood_good:'Ndichumile',mood_low:'Ndilusizi',mood_anxious:'Ndinotyhatyhambo',mood_irritable:'Ndixakekile',mood_tired:'Ndidinwe',mood_loving:'Ndithanda',
+    breathe_tap:'Cofa isangqa ukuqala',breathe_in:'Phefumla ungene',breathe_hold:'Bamba',breathe_out:'Khuphe umoya',breathe_rest:'Phumla',
+    offline_msg:'Awuxhunyiwe — yonke imixholo iyafumaneka ngaphandle kwedatha'
+  },
+  af:{
+    lang_prompt:'Kies jou taal',lang_continue:'Begin my reis ♡',
+    welcome:'Welkom, Mama',login_sub:'Teken in om jou vordering te stoor',
+    sign_in:'Teken In',create_acc:'Skep Rekening',email:'E-posadres',password:'Wagwoord',
+    your_name:'Jou naam',create_btn:'Skep My Rekening',signin_btn:'Teken In',
+    or:'of',guest_btn:'Gaan voort as gas',privacy_note:'Jou data bly privaat.',
+    choose_plan:'Jou genesingsreis begin hier',plan_sub:'Kies die plan wat reg voel vir jou',
+    monthly:'Maandeliks',yearly:'Jaarliks',skip_plan:'Slaan oor — gaan voort met gratis Blossom',
+    popup_label:"'n Oomblik vir jou",
+    nav_home:'Tuis',nav_journal_tab:'Joernaal',nav_epds_tab:'EPDS',nav_resources_tab:'Hulpbronne',nav_community_tab:'Kring',nav_profile_tab:'Profiel',
+    greeting_morning:'Goeie môre,',greeting_afternoon:'Goeie middag,',greeting_evening:'Goeie naand,',
+    aff_label:'Vandag se Bevestiging',home_need:'Wat het jy vandag nodig?',
+    nav_journal:'Skryf in Joernaal',journal_sub:'Druk uit hoe jy voel',
+    nav_epds:'EPDS Toets',epds_sub:'Hoe gaan dit regtig met jou?',
+    breathe_title:'Asemoefening',breathe_sub:'Kalmeer jou gemoed nou',
+    inspire_title:'Inspireer My',inspire_sub:"'n Sagte woord vir jou",
+    crisis_title:'Krisisondersteuning — Suid-Afrika',hotline_label:'24-uur Hulplyn',hotline_desc:'Gratis oproep • 24 uur beskikbaar • Vertroulik',
+    journal_title:'My Joernaal',journal_desc:"'n Private ruimte net vir jou — geen oordeel nie, net liefde",
+    journal_placeholder:'Hoe voel jy vandag, Mama? Skryf enigiets...',
+    save_btn:'Stoor',prev_entries:'Vorige inskrywings',
+    epds_title:'EPDS Screening',epds_desc:'Die Edinburgh Nageboorte Depressieskaal help om te identifiseer hoe jy gevoel het. Dit is nie \'n diagnose nie — dit help jou en jou gesondheidsorgverskaffer.',
+    epds_restart:'Neem die toets weer',epds_submit:'Sien my resultate',epds_question:'Vraag',epds_of:'van',
+    resources_title:'Hulpbronne en Opvoeding',resources_desc:'Kennis is mag — leer meer oor PPD om vir jouself te sorg',
+    emergency:'Noodgeval',
+    community_title:'Ons Kring',community_desc:"'n Veilige, ondersteunende ruimte — jy is nie alleen nie",
+    community_rules:'Dit is \'n oordeel-vrye sone. Wees vriendelik. Plasings is anoniem by verstek.',
+    community_placeholder:'Deel hoe jy voel, vra \'n vraag, of bied aanmoediging...',
+    post_anon:'Plaas anoniem',share_btn:'Deel',
+    mood_good:'Goed',mood_low:'Neerslagtig',mood_anxious:'Angstig',mood_irritable:'Geïrriteerd',mood_tired:'Moeg',mood_loving:'Liefdevol',
+    breathe_tap:'Tik die sirkel om te begin',breathe_in:'Asem in',breathe_hold:'Hou vas',breathe_out:'Asem uit',breathe_rest:'Rus',
+    offline_msg:'Jy is vanlyn — alle inhoud is beskikbaar sonder data'
+  },
+  st:{
+    lang_prompt:'Khetha puo ya hao',lang_continue:'Qala leeto la ka ♡',
+    welcome:'Rea ho amohela, Mama',login_sub:'Kena ho boloka tsoelo-pele ya hao',
+    sign_in:'Kena',create_acc:'Theha Akhaonto',email:'Aterese ya imeile',password:'Phasewete',
+    your_name:'Lebitso la hao',create_btn:'Theha Akhaonto Ya Ka',signin_btn:'Kena',
+    or:'kapa',guest_btn:'Tswela pele e le moeti',privacy_note:'Data ya hao e dula e le sephiri.',
+    choose_plan:'Leeto la hao la ho fola le qala mona',plan_sub:'Khetha moralo o o loketseng wena',
+    monthly:'Kgwedi le kgwedi',yearly:'Selemo le selemo',skip_plan:'Tlola — tswela pele le Blossom ya mahala',
+    popup_label:'Metsotso ya hao',
+    nav_home:'Hae',nav_journal_tab:'Buka',nav_epds_tab:'EPDS',nav_resources_tab:'Sesosa',nav_community_tab:'Mokhatlo',nav_profile_tab:'Profaele',
+    greeting_morning:'Dumela hoseng,',greeting_afternoon:'Dumela motsheare,',greeting_evening:'Dumela mantsiboe,',
+    aff_label:'Tiiso ya kajeno',home_need:'O hloka eng kajeno?',
+    nav_journal:'Ngola Bukeng',journal_sub:'Bua maikutlo a hao',
+    nav_epds:'Lekola EPDS',epds_sub:'O phela jwang, ruri?',
+    breathe_title:'Koetliso ea ho Hema',breathe_sub:'Kgutsa kelello ya hao',
+    inspire_title:'Nthuse',inspire_sub:'Mantswe a bonolo bakeng sa hao',
+    crisis_title:'Thuso ya tshohanyetso — Afrika Borwa',hotline_label:'Mohala wa mahala 24 hora',hotline_desc:'Mohala wa mahala • 24 hora • Sephiri',
+    journal_title:'Buka Ya Ka',journal_desc:'Sebaka sa sephiri bakeng sa hao — ha ho ahlolo, lerato feela',
+    journal_placeholder:'O ikutlwa jwang kajeno, Mama? Ngola ntho efe kapa efe...',
+    save_btn:'Boloka',prev_entries:'Dingolwa tsa pele',
+    epds_title:'Tlhatlhobo ea EPDS',epds_desc:'Edinburgh Postnatal Depression Scale e thusa ho tseba maikutlo a hao. Ha se diagnosis — e thusa wena le mofani wa hao wa tlhokomelo ea bophelo.',
+    epds_restart:'Nka tlhatlhobo hape',epds_submit:'Bona diphetho tsa ka',epds_question:'Potso',epds_of:'ya',
+    resources_title:'Sesosa le Thuto',resources_desc:'Tsebo ke matla — ithute ka PPD ho itlhokomela',
+    emergency:'Tshohanyetso',
+    community_title:'Mokhatlo Wa Rona',community_desc:'Sebaka se bolokehileng — ha o mohano',
+    community_rules:'Ha ho ahlolo mona. Ba le lerato. Diposo di sephiri ka ho itlhahisa.',
+    community_placeholder:'Abelana ka maikutlo a hao, botsa potso, kapa khothaletsa...',
+    post_anon:'Romela ka bosephiri',share_btn:'Abelana',
+    mood_good:'Ke thabile',mood_low:'Ke lutsi',mood_anxious:'Ke tshohile',mood_irritable:'Ke halefile',mood_tired:'Ke lapile',mood_loving:'Ke rata',
+    breathe_tap:'Tobetsa sehalofo ho qala',breathe_in:'Hema o kene',breathe_hold:'Tshwara',breathe_out:'Ntsha moya',breathe_rest:'Phumola',
+    offline_msg:'Ha o kgokahanye — ditaba tsohle di fumaneha ntle le data'
+  },
+  tn:{
+    lang_prompt:'Tlhopha puo ya gago',lang_continue:'Simolola leeto la me ♡',
+    welcome:'O amogelwa, Mama',login_sub:'Tsena go boloka tswelelo ya gago',
+    sign_in:'Tsena',create_acc:'Bopa Akhaonto',email:'Aterese ya imeile',password:'Lefoko la sephiri',
+    your_name:'Leina la gago',create_btn:'Bopa Akhaonto Ya Me',signin_btn:'Tsena',
+    or:'kgotsa',guest_btn:'Tswelela jaaka moeti',privacy_note:'Data ya gago e nna sephiri.',
+    choose_plan:'Leeto la gago la go fola le simolola fa',plan_sub:'Tlhopha thulaganyo e e siametseng wena',
+    monthly:'Kgwedi nngwe le nngwe',yearly:'Ngwaga mongwe le mongwe',skip_plan:'Tsholla — tswelela le Blossom ya mahala',
+    popup_label:'Motsotswana wa gago',
+    nav_home:'Gae',nav_journal_tab:'Buka',nav_epds_tab:'EPDS',nav_resources_tab:'Methopo',nav_community_tab:'Setlhopha',nav_profile_tab:'Profaele',
+    greeting_morning:'Dumela mosong,',greeting_afternoon:'Dumela motshegare,',greeting_evening:'Dumela bosigo,',
+    aff_label:'Tiiso ya gompieno',home_need:'O tlhoka eng gompieno?',
+    nav_journal:'Ngola mo Bukeng',journal_sub:'Bua maikutlo a gago',
+    nav_epds:'Lekola EPDS',epds_sub:'O phela jang, nnete?',
+    breathe_title:'Koketso ya go Hema',breathe_sub:'Khuduga mogopolo wa gago',
+    inspire_title:'Mpolele',inspire_sub:'Lefoko le le nang le kutlo go wena',
+    crisis_title:'Thuso ya ntlha — Afrika Borwa',hotline_label:'Mogala wa mahala awa 24',hotline_desc:'Mogala wa mahala • Diura tse 24 • Sephiri',
+    journal_title:'Buka Ya Me',journal_desc:'Sebaka sa sephiri go wena fela — ga go ahlolo, lorato fela',
+    journal_placeholder:'O ikutlwa jang gompieno, Mama? Ngola sengwe le sengwe...',
+    save_btn:'Boloka',prev_entries:'Dikwalwa tsa pele',
+    epds_title:'Tlhatlhobo ya EPDS',epds_desc:'Edinburgh Postnatal Depression Scale e thusa go tlhola maikutlo a gago. Ga se tlhaloso — e thusa wena le moabi wa gago wa tlhokomelo ya boitekanelo.',
+    epds_restart:'Tsaya tlhatlhobo gape',epds_submit:'Bona dipholo tsa me',epds_question:'Potso',epds_of:'ya',
+    resources_title:'Methopo le Thuto',resources_desc:'Kitso ke maatla — ithute ka PPD go ikgakolola',
+    emergency:'Ntlha',
+    community_title:'Setlhopha Sa Rona',community_desc:'Sebaka se bolokesegile — ga o nosi',
+    community_rules:'Ga go ahlolo fa. Nna le tlhompho. Diposo di sephiri ka go itlhagisa.',
+    community_placeholder:'Abelana ka maikutlo a gago, botsa potso, kgotsa rotloetsa...',
+    post_anon:'Romela ka bosephiri',share_btn:'Abelana',
+    mood_good:'Ke lesome',mood_low:'Ke hutsafetse',mood_anxious:'Ke tshogile',mood_irritable:'Ke galefile',mood_tired:'Ke lapile',mood_loving:'Ke rata',
+    breathe_tap:'Tobetsa sediko go simolola',breathe_in:'Hema o tsene',breathe_hold:'Tshwara',breathe_out:'Ntsha mowa',breathe_rest:'Ikhutse',
+    offline_msg:'Ga o kgolaganye — diteng tsotlhe di bonagala ntle le data'
+  },
+  ts:{
+    lang_prompt:'Hlawula ririmi ra wena',lang_continue:'Sungula ndhavuko wa mina ♡',
+    welcome:'U amukeriwile, Mama',login_sub:'Nghena ku hlayisa nkuvo wa wena',
+    sign_in:'Nghena',create_acc:'Tumbuluxaअकाउंट',email:'Adirese ya imeyili',password:'Phasiwedi',
+    your_name:'Vito ra wena',create_btn:'Tumbuluxa अकाउंट Ya Mina',signin_btn:'Nghena',
+    or:'kumbe',guest_btn:'Ya emahlweni tanihi muendzi',privacy_note:'Data ya wena yi sala yi ri siphiri.',
+    choose_plan:'Ndhavuko wa wena wa ku hola wu sungula laha',plan_sub:'Hlawula nkucetelo lowu ku ringana nawe',
+    monthly:'Nhleti na nhleti',yearly:'Lembe na lembe',skip_plan:'Tlhelela — ya emahlweni na Blossom ya mahala',
+    popup_label:'Nkarhi wa wena',
+    nav_home:'Kaya',nav_journal_tab:'Buku',nav_epds_tab:'EPDS',nav_resources_tab:'Swisekelo',nav_community_tab:'Ntlawa',nav_profile_tab:'Profayili',
+    greeting_morning:'Sawubona nimahlo,',greeting_afternoon:'Sawubona emasikwini,',greeting_evening:'Sawubona xikarhi xa vusiku,',
+    aff_label:'Xivutiso xa namuntlha',home_need:'U lava yini namuntlha?',
+    nav_journal:'Tsala eBukwini',journal_sub:'Vula xifunha xa wena',
+    nav_epds:'Hlola EPDS',epds_sub:'U hanya tani, hi nkoka?',
+    breathe_title:'Nhlayiseko wa ku Hema',breathe_sub:'Tiyisisa makungu ya wena',
+    inspire_title:'Ndzudzumeta Mina',inspire_sub:'Rito ra bufumelo eka wena',
+    crisis_title:'Mpfuneto wa xiphiqo — Afrika Dzonga',hotline_label:'Layini ya mahala wa maora 24',hotline_desc:'Ku fonela mahala • Maora 24 • Siphiri',
+    journal_title:'Buku Ya Mina',journal_desc:'Ndhawu ya siphiri eka wena — ku hava ku avanyisa, rirhandzu ntsena',
+    journal_placeholder:'U twisisa tani namuntlha, Mama? Tsala xintshwa xin\'wana na xin\'wana...',
+    save_btn:'Hlayisa',prev_entries:'Swibumabumelo swa khale',
+    epds_title:'Vhulavulo bya EPDS',epds_desc:'Edinburgh Postnatal Depression Scale yi pfuna ku tiva mhaka yo twisisa. A si xivuriso — yi pfuna wena na muperekisi wa wena wa vutshilo.',
+    epds_restart:'Teka vhulavulo nakambe',epds_submit:'Vona swipimo swa mina',epds_question:'Ndzovo',epds_of:'ya',
+    resources_title:'Swisekelo na Dyondzo',resources_desc:'Vutivi i matimba — dyondza hi PPD ku tiyikela',
+    emergency:'Xiphiqo',
+    community_title:'Ntlawa Wa Hina',community_desc:'Ndhawu leyi hlayisekaka — u nga ri wena ntsena',
+    community_rules:'Ku hava ku avanyisa laha. Va na vutihlamuleri. Switshamo swi siphiri hi ku tiyimiserela.',
+    community_placeholder:'Avelana hi mhaka yo twisisa, vutisa ndzovo, kumbe tiyimisela...',
+    post_anon:'Thumela hi ku xihela',share_btn:'Avelana',
+    mood_good:'Ndzi tsakile',mood_low:'Ndzi dzolowile',mood_anxious:'Ndzi chavile',mood_irritable:'Ndzi tsukile',mood_tired:'Ndzi kolile',mood_loving:'Ndzi rhandza',
+    breathe_tap:'Heta xiyimbelelo ku sungula',breathe_in:'Hema u nghene',breathe_hold:'Tshika',breathe_out:'Huma moya',breathe_rest:'Phumula',
+    offline_msg:'A wu hlanganiwi — mirero yolothe yi kumeka handle ka data'
+  },
+  ve:{
+    lang_prompt:'Nanga luambo lwawe',lang_continue:'Thoma lwendo lwa ngomu ♡',
+    welcome:'Ni ambuiwa, Mama',login_sub:'Dzhena u vhofhe tshikandakanyo thawe',
+    sign_in:'Dzhena',create_acc:'Vumba Akhawunti',email:'Aderese ya imeyili',password:'Phasiwede',
+    your_name:'Dzina lawe',create_btn:'Vumba Akhawunti Yanga',signin_btn:'Dzhena',
+    or:'kana',guest_btn:'Bvelela sa mueni',privacy_note:'Data yawe i dzula i tshi vhofhiwa.',
+    choose_plan:'Lwendo lwawe lwa upora lu thoma fhano',plan_sub:'Nanga mulayoni u u teaho',
+    monthly:'Nwedzi uno na uno',yearly:'Nwaha uno na uno',skip_plan:'Pfukela — bvelela na Blossom ya mahala',
+    popup_label:'Tshifhinga tshawe',
+    nav_home:'Hayani',nav_journal_tab:'Bugu',nav_epds_tab:'EPDS',nav_resources_tab:'Zwithu',nav_community_tab:'Gumbo',nav_profile_tab:'Profaele',
+    greeting_morning:'Ndi matsheloni,',greeting_afternoon:'Ndi masiari,',greeting_evening:'Ndi madekwana,',
+    aff_label:'Thitiriselo ya ḽino ḓuvha',home_need:'Ni toda mini ḽino ḓuvha?',
+    nav_journal:'Ṅwala Buguni',journal_sub:'Bula mbilaelo yawe',
+    nav_epds:'Vhona EPDS',epds_sub:'Ni tshila hani, ngoho?',
+    breathe_title:'Pfunzo ya u Hema',breathe_sub:'Vhofhola muhumbulo wawe',
+    inspire_title:'Nthuse',inspire_sub:'Ipfi ḽine ḽa lufuno kuwe',
+    crisis_title:'Thuso ya tshengedzo — Afrika Tshipembe',hotline_label:'Layini ya mahala awa 24',hotline_desc:'U foniwa mahala • Awa 24 • Tshiphiri',
+    journal_title:'Bugu Yanga',journal_desc:'Nḓowelo ya tshiphiri yawe — a hu na u ahlula, lufuno fhedzi',
+    journal_placeholder:'Ni ḓivha hani ḓuvha ḽino, Mama? Ṅwala zwithu zwoṱhe...',
+    save_btn:'Vhofha',prev_entries:'Zwi ṅwalwaho zwa kale',
+    epds_title:'Tsedzuluso ya EPDS',epds_desc:'Edinburgh Postnatal Depression Scale i thusa u vhona mbilaelo yawe. A si khaṱululo — i thusa iwe na mufhedzisi wawe wa vhutshilo.',
+    epds_restart:'Dzhia tsedzuluso hafhu',epds_submit:'Vhona mvelelo yanga',epds_question:'Mbudziso',epds_of:'ya',
+    resources_title:'Zwithu na Mafhungo',resources_desc:'Nḓivho ndi maanḓa — ḓivha PPD u ḓifara',
+    emergency:'Tshengedzo',
+    community_title:'Gumbo Ḽathu',community_desc:'Nḓowelo ya u tshilela — a si iwe wehe',
+    community_rules:'A hu na u ahlula fhano. Vha na lufuno. Mafhungo a vhofhiwa nga u ḓitika.',
+    community_placeholder:'Kovhekana nga mbilaelo yawe, vhudzisa mbudziso, kana thusa...',
+    post_anon:'Rumela nga u fihla',share_btn:'Kovhekana',
+    mood_good:'Ndi tshifhingani',mood_low:'Ndi ṱavhanganei',mood_anxious:'Ndi tshifhingani',mood_irritable:'Ndi halifelei',mood_tired:'Ndi lapfei',mood_loving:'Ndi randa',
+    breathe_tap:'Denda songo u thoma',breathe_in:'Hema u dzhene',breathe_hold:'Drima',breathe_out:'Bvisa muya',breathe_rest:'Vhofholela',
+    offline_msg:'A ni khanganywi — zwiṅwe zwoṱhe zwi wanala nḓila ya data'
+  },
+  ss:{
+    lang_prompt:'Khetsa lulimi lwakho',lang_continue:'Sungula luhambo lwami ♡',
+    welcome:'Wamukelekile, Mama',login_sub:'Ngena kulondvolota inkhambiso yakho',
+    sign_in:'Ngena',create_acc:'Yenta i-Akhawunti',email:'Ikheli le-imeyili',password:'Liphasiwedi',
+    your_name:'Libito lakho',create_btn:'Yenta i-Akhawunti Yami',signin_btn:'Ngena',
+    or:'nome',guest_btn:'Chubeka njenge-visitor',privacy_note:'Lidatha lakho lihlala liyimfihlo.',
+    choose_plan:'Luhambo lwakho lokupholisa lusungula lapha',plan_sub:'Khetsa lisicelo lelifanele wena',
+    monthly:'Nyanga nayinye',yearly:'Umnyaka wonkhe',skip_plan:'Dlulela — chubeka ne-Blossom yamahhala',
+    popup_label:'Umzuzwana wakho',
+    nav_home:'Ekhaya',nav_journal_tab:'Ijenali',nav_epds_tab:'EPDS',nav_resources_tab:'Tinsizakalo',nav_community_tab:'Inhlangano',nav_profile_tab:'Iphrofayili',
+    greeting_morning:'Sawubona ekuseni,',greeting_afternoon:'Sawubona emini,',greeting_evening:'Sawubona ebusuku,',
+    aff_label:'Siqinisekiso salamuhla',home_need:'Udinga yini lamuhla?',
+    nav_journal:'Bhala eJenalini',journal_sub:'Khuluma indaba yakho',
+    nav_epds:'Hlola i-EPDS',epds_sub:'Uphila kanjani, ngempela?',
+    breathe_title:'Umsebenti Wokuphefumula',breathe_sub:'Thulisa ingcondvo yakho',
+    inspire_title:'Ngisitje',inspire_sub:'Likhono lelinenhlitiyo kuwe',
+    crisis_title:'Lusito lwesiphutfumelaniso — Ningizimu Afrika',hotline_label:'Lusito lwamahhala lemahora langema-24',hotline_desc:'Kushayela kwamahhala • Mahora langema-24 • Kuyimfihlo',
+    journal_title:'Ijenali Yami',journal_desc:'Indzawo leyimfihlo kuwe wena wedvwa — akukho kuhlulela, uthando kuphela',
+    journal_placeholder:'Uzizwa kanjani lamuhla, Mama? Bhala noma yini...',
+    save_btn:'Gcina',prev_entries:'Tingeno tesaphambilini',
+    epds_title:'Kuhlolwa kwe-EPDS',epds_desc:'I-Edinburgh Postnatal Depression Scale ihlola indlela ozizwa ngayo. Akusona sigwebo — isita wena nomhlinzeki wakho.',
+    epds_restart:'Tsentsa uhlolo futsi',epds_submit:'Bona umphumela wami',epds_question:'Umbuzo',epds_of:'ku',
+    resources_title:'Tinsizakalo Netfumo',resources_desc:'Lwati amandla — funda nge-PPD kutitfutfukisa',
+    emergency:'Siphutfumelaniso',
+    community_title:'Inhlangano Yetfu',community_desc:'Indzawo lephephile — awuwedvwa',
+    community_rules:'Akukho kuhlulela lapha. Yiba nomusa. Tigcivelo tiyimfihlo ngokwetenteka.',
+    community_placeholder:'Yabelana ngemizwa yakho, buza umbuzo, nome khuthaza omunye...',
+    post_anon:'Thumela ngokuzimela',share_btn:'Yabelana',
+    mood_good:'Ngijabule',mood_low:'Ngidabukile',mood_anxious:'Ngisesimangweni',mood_irritable:'Ngicasukile',mood_tired:'Ngikhatsele',mood_loving:'Ngithanda',
+    breathe_tap:'Shaya isiyingi kusungula',breathe_in:'Phefumula ungene',breathe_hold:'Bamba',breathe_out:'Khipha umoya',breathe_rest:'Phumula',
+    offline_msg:'Awuxhunyiwe — wonkhe ummukelo utfolakala ngaphandle kwedatha'
+  },
+  nd:{
+    lang_prompt:'Khetha ilimi lakho',lang_continue:'Qala uhambo lwami ♡',
+    welcome:'Wamukelekile, Mama',login_sub:'Ngena ukugcina inkqubela yakho',
+    sign_in:'Ngena',create_acc:'Dala i-Akhawunti',email:'Ikheli le-imeyili',password:'Iphasiwedi',
+    your_name:'Ibizo lakho',create_btn:'Dala i-Akhawunti Yami',signin_btn:'Ngena',
+    or:'kumbe',guest_btn:'Qhubeka njengesihambi',privacy_note:'Idatha yakho ihlala iyimfihlo.',
+    choose_plan:'Uhambo lwakho lokwelapha luqala lapha',plan_sub:'Khetha uhlelo okulungele wena',
+    monthly:'Inyanga yonke',yearly:'Unyaka wonke',skip_plan:'Dlula — qhubeka nge-Blossom yamahhala',
+    popup_label:'Umzuzwana wakho',
+    nav_home:'Ikhaya',nav_journal_tab:'Ijenali',nav_epds_tab:'EPDS',nav_resources_tab:'Izinsiza',nav_community_tab:'Inhlangano',nav_profile_tab:'Iphrofayili',
+    greeting_morning:'Sawubona ekuseni,',greeting_afternoon:'Sawubona emini,',greeting_evening:'Sawubona ebusuku,',
+    aff_label:'Isiqinisekiso sanamuhla',home_need:'Udinga ini namuhla?',
+    nav_journal:'Bhala eJenalini',journal_sub:'Khuluma indaba yakho',
+    nav_epds:'Hlola i-EPDS',epds_sub:'Uphila njani, ngempela?',
+    breathe_title:'Uqeqesho Lokuphefumula',breathe_sub:'Thulisa ingqondo yakho',
+    inspire_title:'Ngikhuthaze',inspire_sub:'Izwi elithambile kuwe',
+    crisis_title:'Usizo lokuphuthumela — Mzansi Afrika',hotline_label:'Usizo lwamahhala lamahora angama-24',hotline_desc:'Ukushayela kwamahhala • Amahora angama-24 • Kuyimfihlo',
+    journal_title:'IJenali Yami',journal_desc:'Indawo eyimfihlo kuwe wedwa — akukho ukwahlulela, uthando kuphela',
+    journal_placeholder:'Uzizwa njani namuhla, Mama? Bhala noma yini...',
+    save_btn:'Gcina',prev_entries:'Izingeno zangaphambilini',
+    epds_title:'Ukuhlolwa kwe-EPDS',epds_desc:'I-Edinburgh Postnatal Depression Scale ihlola indlela ozizwa ngayo. Akusiso isigwebo — isiza wena nomhlinzeki wakho.',
+    epds_restart:'Thatha uhlelo futhi',epds_submit:'Bona imiphumela yami',epds_question:'Umbuzo',epds_of:'ku',
+    resources_title:'Izinsiza Nezemfundo',resources_desc:'Ulwazi amandla — funda nge-PPD ukuze uzinakekele',
+    emergency:'Uphuthu',
+    community_title:'Inhlangano Yethu',community_desc:'Indawo ephephile — awuwedwa',
+    community_rules:'Akukho ukwahlulela lapha. Yiba nomusa. Izithunzi ziyimfihlo ngokwenza.',
+    community_placeholder:'Yabelana ngendlela ozizwa ngayo, buza umbuzo, kumbe khuthaza omunye...',
+    post_anon:'Thumela ngokuzimela',share_btn:'Yabelana',
+    mood_good:'Ngijabulile',mood_low:'Ngidabukile',mood_anxious:'Ngixhalabile',mood_irritable:'Ngithukuthele',mood_tired:'Ngikhathele',mood_loving:'Ngiyathanda',
+    breathe_tap:'Chofoza indingiliza ukuqala',breathe_in:'Phefumula ungene',breathe_hold:'Bamba',breathe_out:'Khipha umoya',breathe_rest:'Phumula',
+    offline_msg:'Awuxhumekile — yonke imimukelo itholakala ngaphandle kwedatha'
+  },
+  nr:{
+    lang_prompt:'Hlawula limi lakho',lang_continue:'Qala uhambo lwami ♡',
+    welcome:'Wamukelekile, Mama',login_sub:'Ngena ukugcina inkqubela yakho',
+    sign_in:'Ngena',create_acc:'Dala i-Akhawunti',email:'Ikheli le-imeyili',password:'Iphasiwedi',
+    your_name:'Ibizo lakho',create_btn:'Dala i-Akhawunti Yami',signin_btn:'Ngena',
+    or:'noma',guest_btn:'Qhubeka njengesihambi',privacy_note:'Idatha yakho ihlala iyimfihlo.',
+    choose_plan:'Uhambo lwakho lokwelapha luqala lapha',plan_sub:'Khetha uhlelo okulungele wena',
+    monthly:'Inyanga yonke',yearly:'Unyaka wonke',skip_plan:'Dlula — qhubeka nge-Blossom yamahhala',
+    popup_label:'Umzuzwana wakho',
+    nav_home:'Ikhaya',nav_journal_tab:'IJenali',nav_epds_tab:'EPDS',nav_resources_tab:'Izinsiza',nav_community_tab:'Inhlangano',nav_profile_tab:'Iphrofayili',
+    greeting_morning:'Sawubona ekuseni,',greeting_afternoon:'Sawubona emini,',greeting_evening:'Sawubona ebusuku,',
+    aff_label:'Isiqinisekiso sanamuhla',home_need:'Udinga ini namuhla?',
+    nav_journal:'Bhala eJenalini',journal_sub:'Khuluma indaba yakho',
+    nav_epds:'Hlola i-EPDS',epds_sub:'Uphila njani, ngempela?',
+    breathe_title:'Uqeqesho Lokuphefumula',breathe_sub:'Thulisa ingqondo yakho',
+    inspire_title:'Ngikhuthaze',inspire_sub:'Izwi elithambile kuwe',
+    crisis_title:'Usizo lokuphuthumela — Mzansi Afrika',hotline_label:'Usizo lwamahhala lamahora angama-24',hotline_desc:'Ukushayela kwamahhala • Amahora angama-24 • Kuyimfihlo',
+    journal_title:'IJenali Yami',journal_desc:'Indawo eyimfihlo — akukho ukwahlulela, uthando kuphela',
+    journal_placeholder:'Uzizwa njani namuhla, Mama? Bhala noma yini...',
+    save_btn:'Gcina',prev_entries:'Izingeno zangaphambilini',
+    epds_title:'Ukuhlolwa kwe-EPDS',epds_desc:'I-Edinburgh Postnatal Depression Scale ihlola indlela ozizwa ngayo. Akusiso isigwebo — isiza wena nomhlinzeki wakho.',
+    epds_restart:'Thatha uhlelo futhi',epds_submit:'Bona imiphumela yami',epds_question:'Umbuzo',epds_of:'ku',
+    resources_title:'Izinsiza Nezemfundo',resources_desc:'Ulwazi amandla — funda nge-PPD ukuze uzinakekele',
+    emergency:'Uphuthu',
+    community_title:'Inhlangano Yethu',community_desc:'Indawo ephephile — awuwedwa',
+    community_rules:'Akukho ukwahlulela lapha. Yiba nomusa. Izithunzi ziyimfihlo ngokwenza.',
+    community_placeholder:'Yabelana ngendlela ozizwa ngayo, buza umbuzo, noma khuthaza omunye...',
+    post_anon:'Thumela ngokuzimela',share_btn:'Yabelana',
+    mood_good:'Ngijabulile',mood_low:'Ngidabukile',mood_anxious:'Ngixhalabile',mood_irritable:'Ngithukuthele',mood_tired:'Ngikhathele',mood_loving:'Ngiyathanda',
+    breathe_tap:'Chofoza indingiliza ukuqala',breathe_in:'Phefumula ungene',breathe_hold:'Bamba',breathe_out:'Khipha umoya',breathe_rest:'Phumula',
+    offline_msg:'Awuxhumekile — yonke imimukelo itholakala ngaphandle kwedatha'
+  }
+};
+
+function applyLang(lang){
+  var t=T[lang]||T.en;
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var key=el.getAttribute('data-i18n');
+    if(t[key])el.textContent=t[key];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){
+    var key=el.getAttribute('data-i18n-placeholder');
+    if(t[key])el.setAttribute('placeholder',t[key]);
+  });
+  document.getElementById('offlineBanner').textContent=t.offline_msg;
+  document.getElementById('breathCircle').textContent=t.breathe_tap;
+  var moodPills=document.querySelectorAll('.mood-pill');
+  var moodKeys=['mood_good','mood_low','mood_anxious','mood_irritable','mood_tired','mood_loving'];
+  var moodEmoji=['😊','😔','😰','😤','😴','🥰'];
+  moodPills.forEach(function(pill,i){
+    if(moodKeys[i])pill.textContent=moodEmoji[i]+' '+t[moodKeys[i]];
+  });
+  var h=new Date().getHours();
+  var greet=h<12?t.greeting_morning:h<17?t.greeting_afternoon:t.greeting_evening;
+  document.getElementById('heroGreeting').textContent=greet;
+  buildEpds();
+}
+
+
   {text:"You are doing better than you think.",lang:"English",icon:"🌸"},
   {text:"One breath. One moment. You are here.",lang:"English",icon:"🌬️"},
   {text:"Your baby is lucky to have you — not perfect, but real.",lang:"English",icon:"👶"},
@@ -783,24 +1163,47 @@ var popupTimer=null;
 var popupIndex=0;
 
 document.addEventListener('DOMContentLoaded',function(){
-  document.getElementById('langGrid').addEventListener('click',function(e){
-    var btn=e.target.closest('.lang-btn');
-    if(!btn)return;
+  function activateLang(btn){
     document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.remove('active');});
     btn.classList.add('active');
     currentLang=btn.getAttribute('data-lang');
+  }
+  document.querySelectorAll('.lang-btn').forEach(function(btn){
+    btn.addEventListener('touchend',function(e){
+      e.preventDefault();
+      activateLang(btn);
+    });
+    btn.addEventListener('click',function(e){
+      e.preventDefault();
+      activateLang(btn);
+    });
   });
-  document.getElementById('langContinueBtn').addEventListener('click',function(){
+  document.getElementById('langContinueBtn').addEventListener('touchend',function(e){
+    e.preventDefault();
+    localStorage.setItem('ym_lang',currentLang);
     showScreen('screenLogin');
   });
-  buildEpds();
+  document.getElementById('langContinueBtn').addEventListener('click',function(e){
+    e.preventDefault();
+    localStorage.setItem('ym_lang',currentLang);
+    showScreen('screenLogin');
+  });
   buildResources();
   renderJournal();
   renderCommunity();
   setDailyAffirmation();
   updateGreeting();
+  var savedLang=localStorage.getItem('ym_lang');
+  if(savedLang){
+    currentLang=savedLang;
+    var activBtn=document.querySelector('.lang-btn[data-lang="'+savedLang+'"]');
+    if(activBtn){document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.remove('active');});activBtn.classList.add('active');}
+  }
+  buildEpds();
   var saved=localStorage.getItem('ym_user');
   if(saved){var u=JSON.parse(saved);setUser(u.name,u.plan||'basic');}
+  var savedPlan=localStorage.getItem('ym_plan');
+  if(saved&&savedPlan){applyLang(currentLang);showScreen('screenApp');}
   window.addEventListener('online',function(){document.getElementById('offlineBanner').classList.remove('show');});
   window.addEventListener('offline',function(){document.getElementById('offlineBanner').classList.add('show');});
   if(!navigator.onLine){document.getElementById('offlineBanner').classList.add('show');}
@@ -931,6 +1334,7 @@ function choosePlan(plan){
   localStorage.setItem('ym_plan',JSON.stringify({tier:plan,billing:billing}));
   document.getElementById('planBadge').textContent=plan==='premium'?'✨ Flourish':'🌸 Blossom';
   showScreen('screenApp');
+  applyLang(currentLang);
   setTimeout(showPopup,10000);
 }
 
@@ -1001,10 +1405,11 @@ function renderJournal(){
 }
 
 function buildEpds(){
+  var t=T[currentLang]||T.en;
   var html=EPDS_Q.map(function(q,i){
-    return '<div class="epds-question"><div class="epds-q-num">Question '+(i+1)+' of '+EPDS_Q.length+'</div><div class="epds-q-text">'+q.q+'</div><div class="epds-options">'+q.opts.map(function(opt,j){return '<button class="epds-opt" onclick="answerEpds('+i+','+j+',this)">'+opt+'</button>';}).join('')+'</div></div>';
+    return '<div class="epds-question"><div class="epds-q-num">'+t.epds_question+' '+(i+1)+' '+t.epds_of+' '+EPDS_Q.length+'</div><div class="epds-q-text">'+q.q+'</div><div class="epds-options">'+q.opts.map(function(opt,j){return '<button type="button" class="epds-opt" onclick="answerEpds('+i+','+j+',this)">'+opt+'</button>';}).join('')+'</div></div>';
   }).join('');
-  document.getElementById('epdsFormContainer').innerHTML=html+'<button class="epds-submit" onclick="submitEpds()">See my results</button>';
+  document.getElementById('epdsFormContainer').innerHTML=html+'<button type="button" class="epds-submit" onclick="submitEpds()">'+t.epds_submit+'</button>';
 }
 
 function answerEpds(qi,oi,btn){
@@ -1085,4 +1490,4 @@ function stopBreathing(){
 if('serviceWorker'in navigator){navigator.serviceWorker.register('sw.js').catch(function(){});}
 </script>
 </body>
-                                                                        </html>
+  </html>
