@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#B5537A">
+<meta name="description" content="Yummy Mummy - Postpartum Depression Support for South African Mothers">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Yummy Mummy</title>
+<link rel="manifest" href="manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--rose:#B5537A;--rose-light:#F4CEDD;--rose-pale:#FDF0F5;--gold:#C9933A;--gold-light:#F5E4C4;--sage:#6B8F6A;--sage-light:#D4E8D3;--cream:#FFF8F2;--warm-white:#FFFCF8;--text-dark:#2D1F28;--text-mid:#6B4F5C;--text-light:#A0849A;--border:rgba(181,83,122,0.15);--shadow:0 4px 24px rgba(181,83,122,0.1);--radius:20px;--radius-sm:12px;}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text-dark);min-height:100vh;overflow-x:hidden;}
+.screen{display:none;min-height:100vh;}
+.screen.active{display:block;}
+#screenLang{background:linear-gradient(160deg,#F9E4EF 0%,#FDF0F5 40%,#FFF3E8 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px;}
+.lang-logo{width:80px;height:80px;background:var(--rose);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(181,83,122,0.35);margin-bottom:16px;animation:pulse 2s ease-in-out infinite;}
+.lang-logo svg{width:44px;height:44px;fill:white;}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+#screenLang h1{font-family:'Playfair Display',serif;font-size:34px;color:var(--rose);margin-bottom:4px;}
+.tagline{font-size:13px;color:var(--text-mid);margin-bottom:28px;}
+.lang-prompt{font-size:13px;font-weight:700;color:var(--text-mid);margin-bottom:14px;}
+.lang-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:360px;margin-bottom:32px;}
+.lang-btn{padding:9px 18px;border-radius:24px;border:2px solid var(--rose);background:white;color:var(--rose);font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;transition:background 0.15s,color 0.15s;}
+.lang-btn.active{background:var(--rose);color:white;}
+.lang-continue{padding:15px 52px;background:var(--rose);color:white;border:none;border-radius:32px;font-size:16px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;box-shadow:0 6px 20px rgba(181,83,122,0.4);}
+#screenLogin{background:linear-gradient(160deg,#F9E4EF 0%,#FDF0F5 50%,#FFF3E8 100%);display:flex;align-items:center;justify-content:center;padding:40px 24px;}
+.login-card{background:white;border-radius:28px;padding:36px 28px;width:100%;max-width:380px;box-shadow:0 12px 48px rgba(181,83,122,0.15);border:1px solid var(--border);}
+.login-logo{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.login-logo-dot{width:38px;height:38px;background:var(--rose);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.login-logo-dot svg{width:22px;height:22px;fill:white;}
+.login-logo-name{font-family:'Playfair Display',serif;font-size:22px;color:var(--rose);font-weight:700;}
+.login-card h2{font-family:'Playfair Display',serif;font-size:26px;color:var(--text-dark);margin-bottom:4px;}
+.login-sub{font-size:13px;color:var(--text-light);margin-bottom:24px;}
+.login-tabs{display:flex;background:var(--rose-pale);border-radius:14px;padding:4px;margin-bottom:22px;}
+.login-tab{flex:1;padding:9px;text-align:center;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;color:var(--text-light);border:none;background:none;font-family:'Nunito',sans-serif;transition:all 0.2s;}
+.login-tab.active{background:white;color:var(--rose);box-shadow:0 2px 8px rgba(181,83,122,0.15);}
+.form-group{margin-bottom:16px;}
+.form-label{font-size:11px;font-weight:700;color:var(--text-mid);margin-bottom:6px;display:block;text-transform:uppercase;letter-spacing:0.5px;}
+.form-input{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:14px;font-family:'Nunito',sans-serif;font-size:15px;color:var(--text-dark);background:var(--warm-white);outline:none;transition:border-color 0.2s;}
+.form-input:focus{border-color:var(--rose);background:white;}
+.login-btn{width:100%;padding:15px;background:var(--rose);color:white;border:none;border-radius:16px;font-size:16px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;margin-top:8px;box-shadow:0 6px 20px rgba(181,83,122,0.3);}
+.login-divider{text-align:center;color:var(--text-light);font-size:12px;margin:16px 0;}
+.guest-btn{width:100%;padding:13px;background:white;color:var(--rose);border:2px solid var(--rose);border-radius:16px;font-size:14px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;}
+.login-footer{font-size:11px;color:var(--text-light);text-align:center;margin-top:16px;line-height:1.6;}
+#screenSubscribe{background:linear-gradient(160deg,#F9E4EF 0%,#FDF0F5 50%,#FFF3E8 100%);padding:40px 20px 60px;}
+.sub-header{text-align:center;margin-bottom:28px;}
+.sub-header h2{font-family:'Playfair Display',serif;font-size:28px;color:var(--text-dark);margin-bottom:6px;}
+.sub-header p{font-size:14px;color:var(--text-mid);line-height:1.6;}
+.sub-cards{display:flex;flex-direction:column;gap:20px;max-width:420px;margin:0 auto;}
+.sub-card{background:white;border-radius:24px;padding:28px 24px;border:2px solid var(--border);box-shadow:var(--shadow);position:relative;}
+.sub-card.featured{border-color:var(--rose);box-shadow:0 8px 40px rgba(181,83,122,0.2);}
+.sub-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--rose);color:white;font-size:11px;font-weight:700;padding:4px 20px;border-radius:20px;text-transform:uppercase;letter-spacing:1px;white-space:nowrap;}
+.sub-tier{font-size:11px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;}
+.sub-name{font-family:'Playfair Display',serif;font-size:28px;color:var(--text-dark);margin-bottom:4px;}
+.sub-price{font-size:32px;font-weight:800;color:var(--rose);margin-bottom:4px;}
+.sub-price span{font-size:14px;font-weight:500;color:var(--text-light);}
+.sub-desc{font-size:13px;color:var(--text-mid);margin-bottom:20px;line-height:1.5;}
+.sub-features{list-style:none;margin-bottom:24px;display:flex;flex-direction:column;gap:10px;}
+.sub-features li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--text-dark);}
+.sub-features li .fi{font-size:16px;flex-shrink:0;}
+.sub-features li.locked{color:var(--text-light);}
+.sub-cta{width:100%;padding:14px;border-radius:16px;font-size:15px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;border:none;}
+.sub-cta.primary{background:var(--rose);color:white;box-shadow:0 6px 20px rgba(181,83,122,0.3);}
+.sub-cta.secondary{background:white;color:var(--rose);border:2px solid var(--rose);}
+.sub-skip{text-align:center;margin-top:20px;}
+.sub-skip a{font-size:13px;color:var(--text-light);cursor:pointer;text-decoration:underline;}
+#screenApp{background:var(--cream);display:flex;flex-direction:column;}
+.app-header{background:white;border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(181,83,122,0.08);}
+.header-brand{display:flex;align-items:center;gap:10px;}
+.header-logo{width:36px;height:36px;background:var(--rose);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.header-logo svg{width:20px;height:20px;fill:white;}
+.header-brand span{font-family:'Playfair Display',serif;font-size:20px;color:var(--rose);font-weight:700;}
+.header-right{display:flex;align-items:center;gap:8px;}
+.header-pill{font-size:11px;color:var(--text-light);border:1px solid var(--border);border-radius:12px;padding:4px 10px;cursor:pointer;}
+.header-avatar{width:32px;height:32px;border-radius:50%;background:var(--rose-light);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--rose);cursor:pointer;}
+.app-content{flex:1;overflow-y:auto;padding-bottom:90px;}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid var(--border);display:flex;padding:8px 0 calc(8px + env(safe-area-inset-bottom));box-shadow:0 -4px 20px rgba(181,83,122,0.1);z-index:100;}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 4px;cursor:pointer;border:none;background:none;}
+.nav-item .nav-icon{font-size:22px;transition:transform 0.2s;}
+.nav-item .nav-label{font-size:10px;font-weight:600;color:var(--text-light);transition:color 0.2s;}
+.nav-item.active .nav-label{color:var(--rose);}
+.nav-item.active .nav-icon{transform:translateY(-2px);}
+.page{display:none;animation:fadeIn 0.3s ease;}
+.page.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.motivation-popup{position:fixed;bottom:100px;left:16px;right:16px;z-index:400;background:white;border-radius:20px;padding:18px 16px 18px 20px;box-shadow:0 8px 40px rgba(181,83,122,0.28);border:1.5px solid var(--rose-light);display:flex;align-items:flex-start;gap:12px;transform:translateY(24px);opacity:0;transition:transform 0.45s cubic-bezier(0.34,1.56,0.64,1),opacity 0.35s ease;pointer-events:none;}
+.motivation-popup.show{transform:translateY(0);opacity:1;pointer-events:all;}
+.popup-icon{font-size:26px;flex-shrink:0;margin-top:2px;}
+.popup-body{flex:1;}
+.popup-label{font-size:10px;font-weight:700;color:var(--rose);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;}
+.popup-text{font-size:15px;color:var(--text-dark);line-height:1.5;font-style:italic;}
+.popup-lang{font-size:11px;color:var(--text-light);margin-top:4px;}
+.popup-close{background:none;border:none;font-size:18px;color:var(--text-light);cursor:pointer;padding:0;flex-shrink:0;}
+.home-hero{background:linear-gradient(135deg,#F4CEDD 0%,#FDF0F5 60%,#FFF3E8 100%);padding:28px 20px 24px;position:relative;overflow:hidden;}
+.home-hero::after{content:'';position:absolute;right:-20px;top:-20px;width:140px;height:140px;background:rgba(181,83,122,0.1);border-radius:50%;}
+.hero-greeting{font-size:13px;color:var(--text-mid);font-weight:500;margin-bottom:4px;}
+.hero-name{font-family:'Playfair Display',serif;font-size:26px;color:var(--text-dark);margin-bottom:8px;}
+.hero-quote{font-size:14px;color:var(--text-mid);line-height:1.6;font-style:italic;max-width:260px;}
+.mood-row{padding:16px 20px;display:flex;gap:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.mood-pill{flex-shrink:0;padding:8px 16px;border-radius:20px;border:1.5px solid var(--border);background:white;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.18s;display:flex;align-items:center;gap:6px;}
+.mood-pill.selected{background:var(--rose);color:white;border-color:var(--rose);}
+.section-title{font-size:16px;font-weight:700;color:var(--text-dark);padding:16px 20px 8px;}
+.quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 20px 8px;}
+.action-card{background:white;border-radius:var(--radius);padding:18px 16px;box-shadow:var(--shadow);cursor:pointer;transition:transform 0.18s;border:1px solid var(--border);display:flex;flex-direction:column;gap:8px;}
+.action-card:active{transform:scale(0.96);}
+.action-card .card-icon{font-size:28px;}
+.action-card .card-title{font-size:14px;font-weight:700;color:var(--text-dark);}
+.action-card .card-sub{font-size:11px;color:var(--text-light);}
+.action-card.rose{background:linear-gradient(135deg,var(--rose) 0%,#C4698A 100%);}
+.action-card.rose .card-title,.action-card.rose .card-sub{color:white;}
+.action-card.gold{background:linear-gradient(135deg,var(--gold) 0%,#D4A44F 100%);}
+.action-card.gold .card-title,.action-card.gold .card-sub{color:white;}
+.affirmation-strip{margin:8px 20px;background:var(--sage-light);border-radius:var(--radius);padding:16px 20px;border-left:4px solid var(--sage);}
+.aff-label{font-size:10px;font-weight:700;color:var(--sage);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.aff-text{font-size:14px;color:#3D5C3C;line-height:1.6;font-style:italic;}
+.hotline-card{background:linear-gradient(135deg,var(--rose) 0%,#C4698A 100%);border-radius:var(--radius);margin:0 20px 20px;padding:18px;color:white;}
+.hotline-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;opacity:0.8;margin-bottom:4px;}
+.hotline-name{font-size:18px;font-weight:700;margin-bottom:4px;}
+.hotline-number{font-size:24px;font-weight:800;letter-spacing:1px;}
+.hotline-desc{font-size:12px;opacity:0.85;margin-top:4px;}
+.journal-header{background:linear-gradient(135deg,#E8D5F0 0%,#F5E9FB 100%);padding:24px 20px;}
+.journal-header h2{font-family:'Playfair Display',serif;font-size:24px;color:#4A2560;}
+.journal-header p{font-size:13px;color:#7A5090;margin-top:4px;}
+.journal-new{margin:16px 20px;}
+.journal-textarea{width:100%;min-height:140px;padding:16px;border:1.5px solid var(--border);border-radius:var(--radius);font-family:'Nunito',sans-serif;font-size:15px;color:var(--text-dark);background:white;resize:none;outline:none;line-height:1.7;transition:border-color 0.2s;}
+.journal-textarea:focus{border-color:var(--rose);}
+.journal-meta{display:flex;gap:10px;margin-top:10px;align-items:center;}
+.journal-mood-btns{display:flex;gap:6px;}
+.jmood{font-size:20px;cursor:pointer;opacity:0.5;transition:all 0.2s;}
+.jmood.sel{opacity:1;transform:scale(1.3);}
+.save-btn{margin-left:auto;padding:10px 24px;background:var(--rose);color:white;border:none;border-radius:20px;font-size:14px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;}
+.journal-entries{padding:0 20px;}
+.journal-entry{background:white;border-radius:var(--radius-sm);padding:16px;margin-bottom:12px;border:1px solid var(--border);box-shadow:var(--shadow);}
+.entry-meta{display:flex;justify-content:space-between;margin-bottom:8px;}
+.entry-date{font-size:11px;color:var(--text-light);font-weight:600;}
+.entry-mood{font-size:16px;}
+.entry-text{font-size:14px;color:var(--text-dark);line-height:1.6;}
+.epds-header{background:linear-gradient(135deg,#D5E8F0 0%,#E9F5FB 100%);padding:24px 20px;}
+.epds-header h2{font-family:'Playfair Display',serif;font-size:24px;color:#1A4A5C;}
+.epds-header p{font-size:13px;color:#3A6A7C;margin-top:4px;line-height:1.5;}
+.epds-form{padding:16px 20px;}
+.epds-question{background:white;border-radius:var(--radius-sm);padding:18px;margin-bottom:14px;border:1px solid var(--border);box-shadow:var(--shadow);}
+.epds-q-num{font-size:11px;font-weight:700;color:var(--rose);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.epds-q-text{font-size:15px;color:var(--text-dark);font-weight:600;line-height:1.5;margin-bottom:12px;}
+.epds-options{display:flex;flex-direction:column;gap:8px;}
+.epds-opt{padding:10px 14px;border-radius:10px;border:1.5px solid var(--border);font-size:13px;cursor:pointer;transition:all 0.18s;background:white;font-family:'Nunito',sans-serif;text-align:left;}
+.epds-opt.selected{background:var(--rose-light);border-color:var(--rose);color:var(--rose);font-weight:600;}
+.epds-submit{width:100%;padding:16px;background:var(--rose);color:white;border:none;border-radius:20px;font-size:16px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;margin-top:8px;box-shadow:0 6px 20px rgba(181,83,122,0.35);}
+.epds-result{background:white;border-radius:var(--radius);padding:24px 20px;margin:20px;text-align:center;border:1px solid var(--border);box-shadow:var(--shadow);display:none;}
+.epds-score-circle{width:100px;height:100px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;}
+.score-low{background:#D4F0D3;color:#2D6B2A;}
+.score-mid{background:#FFF3CC;color:#7A5A00;}
+.score-high{background:#FFD6D6;color:#8B1A1A;}
+.epds-result h3{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:8px;}
+.epds-result p{font-size:14px;color:var(--text-mid);line-height:1.6;white-space:pre-line;}
+.epds-restart{margin-top:16px;padding:12px 28px;background:var(--rose);color:white;border:none;border-radius:20px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;cursor:pointer;}
+.resources-header{background:linear-gradient(135deg,#D5EDD5 0%,#EDF8ED 100%);padding:24px 20px;}
+.resources-header h2{font-family:'Playfair Display',serif;font-size:24px;color:#1A4A1A;}
+.resources-header p{font-size:13px;color:#3A6A3A;margin-top:4px;}
+.resource-section{padding:12px 20px;}
+.resource-card{background:white;border-radius:var(--radius-sm);margin-bottom:12px;border:1px solid var(--border);overflow:hidden;}
+.resource-card-header{padding:16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;}
+.resource-card-left{display:flex;align-items:center;gap:12px;}
+.resource-icon{font-size:24px;}
+.resource-title{font-size:15px;font-weight:700;color:var(--text-dark);}
+.resource-subtitle{font-size:12px;color:var(--text-light);margin-top:2px;}
+.resource-chevron{font-size:16px;color:var(--text-light);transition:transform 0.3s;}
+.resource-card.open .resource-chevron{transform:rotate(180deg);}
+.resource-body{display:none;padding:0 16px 16px;}
+.resource-card.open .resource-body{display:block;}
+.resource-body p{font-size:14px;color:var(--text-mid);line-height:1.7;margin-bottom:8px;}
+.resource-body ul{padding-left:18px;}
+.resource-body li{font-size:14px;color:var(--text-mid);line-height:1.8;}
+.community-header{background:linear-gradient(135deg,#EAD5F0 0%,#F5EDFB 100%);padding:24px 20px;}
+.community-header h2{font-family:'Playfair Display',serif;font-size:24px;color:#3A1A5C;}
+.community-header p{font-size:13px;color:#6A4A8C;margin-top:4px;}
+.community-rules{margin:12px 20px;background:#F5EDFB;border-radius:var(--radius-sm);padding:14px;border-left:4px solid #9B59C4;font-size:13px;color:#4A2A6C;line-height:1.6;}
+.post-input-card{margin:0 20px 16px;background:white;border-radius:var(--radius-sm);padding:16px;border:1px solid var(--border);box-shadow:var(--shadow);}
+.post-textarea{width:100%;min-height:80px;padding:12px;border:1.5px solid var(--border);border-radius:12px;font-family:'Nunito',sans-serif;font-size:14px;color:var(--text-dark);background:var(--warm-white);resize:none;outline:none;}
+.post-textarea:focus{border-color:#9B59C4;}
+.post-actions{display:flex;gap:8px;margin-top:10px;align-items:center;}
+.anon-toggle{font-size:12px;color:var(--text-light);display:flex;align-items:center;gap:6px;cursor:pointer;}
+.post-btn{margin-left:auto;padding:10px 20px;background:#9B59C4;color:white;border:none;border-radius:16px;font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;}
+.community-feed{padding:0 20px;}
+.community-post{background:white;border-radius:var(--radius-sm);padding:16px;margin-bottom:12px;border:1px solid var(--border);box-shadow:var(--shadow);}
+.post-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.post-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;}
+.post-author{font-size:14px;font-weight:700;color:var(--text-dark);}
+.post-time{font-size:11px;color:var(--text-light);}
+.post-text{font-size:14px;color:var(--text-dark);line-height:1.7;margin-bottom:12px;}
+.post-footer{display:flex;gap:16px;}
+.post-action{font-size:12px;color:var(--text-light);cursor:pointer;display:flex;align-items:center;gap:4px;transition:color 0.2s;}
+.post-action.liked{color:var(--rose);}
+.reply-section{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);display:none;}
+.reply-section.open{display:block;}
+.reply-item{display:flex;gap:8px;margin-bottom:8px;}
+.reply-avatar{width:28px;height:28px;border-radius:50%;background:var(--sage-light);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--sage);flex-shrink:0;}
+.reply-content{background:var(--warm-white);border-radius:12px;padding:8px 12px;flex:1;}
+.reply-author{font-size:12px;font-weight:700;color:var(--text-dark);}
+.reply-text{font-size:13px;color:var(--text-mid);}
+.reply-input-row{display:flex;gap:8px;margin-top:8px;}
+.reply-input{flex:1;padding:8px 12px;border:1px solid var(--border);border-radius:16px;font-family:'Nunito',sans-serif;font-size:13px;outline:none;background:white;}
+.reply-send{padding:8px 16px;background:var(--rose);color:white;border:none;border-radius:16px;font-size:12px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;}
+.offline-banner{background:#FFF3CC;padding:8px 16px;text-align:center;font-size:12px;color:#7A5A00;font-weight:600;display:none;}
+.offline-banner.show{display:block;}
+.breathing-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(181,83,122,0.95);align-items:center;justify-content:center;flex-direction:column;gap:20px;}
+.breathing-overlay.show{display:flex;}
+.breath-circle{width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.2);border:3px solid rgba(255,255,255,0.6);display:flex;align-items:center;justify-content:center;color:white;font-size:18px;font-weight:700;transition:transform 4s ease-in-out;cursor:pointer;}
+.breath-circle.inhale{transform:scale(1.6);}
+.breath-instruction{color:white;font-size:22px;font-family:'Playfair Display',serif;}
+.breath-close{position:absolute;top:40px;right:20px;color:white;font-size:28px;cursor:pointer;background:none;border:none;}
+</style>
+</head>
+<body>
+
+<!-- SCREEN 1: LANGUAGE -->
+<div class="screen active" id="screenLang">
+  <div class="lang-logo"><svg viewBox="0 0 50 50"><path d="M25 5C20 5 12 8 10 16C8 22 10 26 14 30C18 34 22 36 25 45C28 36 32 34 36 30C40 26 42 22 40 16C38 8 30 5 25 5Z"/></svg></div>
+  <h1>Yummy Mummy</h1>
+  <p class="tagline">Your postpartum support companion</p>
+  <p class="lang-prompt">Choose your language</p>
+  <div class="lang-grid" id="langGrid">
+    <button class="lang-btn active" data-lang="en">English</button>
+    <button class="lang-btn" data-lang="zu">isiZulu</button>
+    <button class="lang-btn" data-lang="xh">isiXhosa</button>
+    <button class="lang-btn" data-lang="af">Afrikaans</button>
+    <button class="lang-btn" data-lang="st">Sesotho</button>
+    <button class="lang-btn" data-lang="tn">Setswana</button>
+    <button class="lang-btn" data-lang="ts">Xitsonga</button>
+    <button class="lang-btn" data-lang="ve">Tshivenda</button>
+    <button class="lang-btn" data-lang="ss">siSwati</button>
+    <button class="lang-btn" data-lang="nd">isiNdebele (N)</button>
+    <button class="lang-btn" data-lang="nr">isiNdebele (S)</button>
+  </div>
+  <button class="lang-continue" id="langContinueBtn">Continue</button>
+</div>
+
+<!-- SCREEN 2: LOGIN -->
+<div class="screen" id="screenLogin">
+  <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;padding:40px 24px;background:linear-gradient(160deg,#F9E4EF 0%,#FDF0F5 50%,#FFF3E8 100%);">
+    <div class="login-card">
+      <div class="login-logo">
+        <div class="login-logo-dot"><svg viewBox="0 0 50 50"><path d="M25 5C20 5 12 8 10 16C8 22 10 26 14 30C18 34 22 36 25 45C28 36 32 34 36 30C40 26 42 22 40 16C38 8 30 5 25 5Z"/></svg></div>
+        <span class="login-logo-name">Yummy Mummy</span>
+      </div>
+      <h2>Welcome, Mama</h2>
+      <p class="login-sub">Sign in to save your progress and connect with our community</p>
+      <div class="login-tabs">
+        <button class="login-tab active" id="tabLogin" onclick="switchTab('login')">Sign In</button>
+        <button class="login-tab" id="tabRegister" onclick="switchTab('register')">Create Account</button>
+      </div>
+      <div id="formLogin">
+        <div class="form-group"><label class="form-label">Email address</label><input class="form-input" type="email" id="loginEmail" placeholder="mama@example.com"></div>
+        <div class="form-group"><label class="form-label">Password</label><input class="form-input" type="password" id="loginPassword" placeholder="Your password"></div>
+        <button class="login-btn" onclick="doLogin()">Sign In</button>
+      </div>
+      <div id="formRegister" style="display:none">
+        <div class="form-group"><label class="form-label">Your name</label><input class="form-input" type="text" id="regName" placeholder="What shall we call you?"></div>
+        <div class="form-group"><label class="form-label">Email address</label><input class="form-input" type="email" id="regEmail" placeholder="mama@example.com"></div>
+        <div class="form-group"><label class="form-label">Password</label><input class="form-input" type="password" id="regPassword" placeholder="Create a password"></div>
+        <button class="login-btn" onclick="doRegister()">Create My Account</button>
+      </div>
+      <div class="login-divider">or</div>
+      <button class="guest-btn" onclick="continueAsGuest()">Continue as guest</button>
+      <p class="login-footer">Your data stays private. This app does not replace professional medical care.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 3: SUBSCRIPTION -->
+<div class="screen" id="screenSubscribe">
+  <div class="sub-header">
+    <div style="font-size:40px;margin-bottom:12px;">🌸</div>
+    <h2>Choose your plan</h2>
+    <p>Start free — upgrade anytime when you are ready</p>
+  </div>
+  <div class="sub-cards">
+    <div class="sub-card">
+      <div class="sub-tier">Basic</div>
+      <div class="sub-name">Blossom</div>
+      <div class="sub-price">Free <span>forever</span></div>
+      <div class="sub-desc">Everything you need to begin your healing journey</div>
+      <ul class="sub-features">
+        <li><span class="fi">📔</span> Personal journal — unlimited entries</li>
+        <li><span class="fi">📋</span> EPDS screening test</li>
+        <li><span class="fi">📚</span> Full resource library</li>
+        <li><span class="fi">🌬️</span> Breathing exercises</li>
+        <li><span class="fi">✨</span> Daily motivational pop-ups</li>
+        <li><span class="fi">💜</span> Community circle — read only</li>
+        <li class="locked"><span class="fi">🔒</span> Community posting and replies</li>
+        <li class="locked"><span class="fi">🔒</span> Healthcare provider sharing</li>
+        <li class="locked"><span class="fi">🔒</span> Mood trend insights</li>
+      </ul>
+      <button class="sub-cta secondary" onclick="choosePlan('basic')">Start free</button>
+    </div>
+    <div class="sub-card featured">
+      <div class="sub-badge">Most popular</div>
+      <div class="sub-tier">Premium</div>
+      <div class="sub-name">Flourish</div>
+      <div class="sub-price">TBC <span>/ month</span></div>
+      <div class="sub-desc">Full support with community, insights and healthcare connection</div>
+      <ul class="sub-features">
+        <li><span class="fi">📔</span> Everything in Blossom</li>
+        <li><span class="fi">💜</span> Community posting, replies and reactions</li>
+        <li><span class="fi">📊</span> Mood trend charts and weekly insights</li>
+        <li><span class="fi">🏥</span> Share EPDS results with your healthcare provider</li>
+        <li><span class="fi">🌍</span> All 11 language affirmations and content</li>
+        <li><span class="fi">🔔</span> Gentle daily check-in reminders</li>
+        <li><span class="fi">⭐</span> Priority support from our care team</li>
+      </ul>
+      <button class="sub-cta primary" onclick="choosePlan('premium')">Coming soon — notify me</button>
+    </div>
+  </div>
+  <div class="sub-skip"><a onclick="choosePlan('basic')">Skip for now — start with Blossom free</a></div>
+</div>
+
+<!-- SCREEN 4: MAIN APP -->
+<div class="screen" id="screenApp">
+  <div class="motivation-popup" id="motivationPopup">
+    <div class="popup-icon" id="popupIcon">🌸</div>
+    <div class="popup-body">
+      <div class="popup-label">A moment for you</div>
+      <div class="popup-text" id="popupText">You are doing better than you think.</div>
+      <div class="popup-lang" id="popupLang">English</div>
+    </div>
+    <button class="popup-close" onclick="closePopup()">X</button>
+  </div>
+  <div class="breathing-overlay" id="breathingOverlay">
+    <button class="breath-close" onclick="stopBreathing()">X</button>
+    <div class="breath-circle" id="breathCircle" onclick="runBreathCycle()">Breathe</div>
+    <div class="breath-instruction" id="breathInstruction">Tap the circle to begin</div>
+  </div>
+  <div class="offline-banner" id="offlineBanner">You are offline — all content is available without data</div>
+  <header class="app-header">
+    <div class="header-brand">
+      <div class="header-logo"><svg viewBox="0 0 50 50"><path d="M25 5C20 5 12 8 10 16C8 22 10 26 14 30C18 34 22 36 25 45C28 36 32 34 36 30C40 26 42 22 40 16C38 8 30 5 25 5Z"/></svg></div>
+      <span>Yummy Mummy</span>
+    </div>
+    <div class="header-right">
+      <div class="header-pill" id="planBadge">Blossom</div>
+      <div class="header-avatar" id="userAvatar">M</div>
+    </div>
+  </header>
+  <div class="app-content">
+    <div class="page active" id="page-home">
+      <div class="home-hero">
+        <div class="hero-greeting" id="heroGreeting">Good morning,</div>
+        <div class="hero-name" id="heroName">Mama</div>
+        <div class="hero-quote">"You are doing better than you think. Every breath you take is an act of courage."</div>
+      </div>
+      <div class="mood-row">
+        <div class="mood-pill" onclick="selectMood(this,'😊')">😊 Good</div>
+        <div class="mood-pill" onclick="selectMood(this,'😔')">😔 Low</div>
+        <div class="mood-pill" onclick="selectMood(this,'😰')">😰 Anxious</div>
+        <div class="mood-pill" onclick="selectMood(this,'😤')">😤 Irritable</div>
+        <div class="mood-pill" onclick="selectMood(this,'😴')">😴 Tired</div>
+        <div class="mood-pill" onclick="selectMood(this,'🥰')">🥰 Loving</div>
+      </div>
+      <div class="affirmation-strip">
+        <div class="aff-label">Today's Affirmation</div>
+        <div class="aff-text" id="dailyAffirmation">I am enough. I am learning. I am loved.</div>
+      </div>
+      <div class="section-title">What do you need today?</div>
+      <div class="quick-actions">
+        <div class="action-card rose" onclick="goTo('journal')"><div class="card-icon">📔</div><div class="card-title">Write in Journal</div><div class="card-sub">Express how you feel</div></div>
+        <div class="action-card gold" onclick="goTo('epds')"><div class="card-icon">📋</div><div class="card-title">EPDS Check-in</div><div class="card-sub">How are you, really?</div></div>
+        <div class="action-card" onclick="startBreathing()"><div class="card-icon">🌬️</div><div class="card-title">Breathing Exercise</div><div class="card-sub">Calm your mind now</div></div>
+        <div class="action-card" onclick="goTo('resources')"><div class="card-icon">📚</div><div class="card-title">Resources</div><div class="card-sub">Learn and find support</div></div>
+      </div>
+      <div class="section-title">Crisis Support — South Africa</div>
+      <div class="hotline-card">
+        <div class="hotline-label">24hr Helpline</div>
+        <div class="hotline-name">SADAG — Mental Health Crisis Line</div>
+        <div class="hotline-number">0800 456 789</div>
+        <div class="hotline-desc">Free call • Available 24 hours • Confidential</div>
+      </div>
+    </div>
+    <div class="page" id="page-journal">
+      <div class="journal-header"><h2>My Journal</h2><p>A private space just for you — no judgement, only love</p></div>
+      <div class="journal-new">
+        <textarea class="journal-textarea" id="journalText" placeholder="How are you feeling today, Mama? Write anything — there are no wrong words here..."></textarea>
+        <div class="journal-meta">
+          <div class="journal-mood-btns">
+            <span class="jmood" onclick="setJMood(this,'😊')">😊</span>
+            <span class="jmood" onclick="setJMood(this,'😔')">😔</span>
+            <span class="jmood" onclick="setJMood(this,'😰')">😰</span>
+            <span class="jmood" onclick="setJMood(this,'🥰')">🥰</span>
+            <span class="jmood" onclick="setJMood(this,'😴')">😴</span>
+          </div>
+          <button class="save-btn" onclick="saveJournal()">Save</button>
+        </div>
+      </div>
+      <div class="section-title">Previous entries</div>
+      <div class="journal-entries" id="journalEntries"></div>
+    </div>
+    <div class="page" id="page-epds">
+      <div class="epds-header"><h2>EPDS Screening</h2><p>The Edinburgh Postnatal Depression Scale helps identify how you have been feeling. This is not a diagnosis — it helps you and your healthcare provider.</p></div>
+      <div id="epdsFormContainer" class="epds-form"></div>
+      <div class="epds-result" id="epdsResult">
+        <div class="epds-score-circle" id="epdsScoreCircle"><span id="epdsScoreNum">0</span></div>
+        <h3 id="epdsResultTitle">Your result</h3>
+        <p id="epdsResultText"></p>
+        <button class="epds-restart" onclick="resetEpds()">Take the test again</button>
+      </div>
+    </div>
+    <div class="page" id="page-resources">
+      <div class="resources-header"><h2>Resources and Education</h2><p>Knowledge is power — learn about postpartum depression to care for yourself and others</p></div>
+      <div class="resource-section">
+        <div class="hotline-card" style="margin:0 0 16px;">
+          <div class="hotline-label">Emergency</div>
+          <div class="hotline-name">SADAG Crisis Line</div>
+          <div class="hotline-number">0800 456 789</div>
+          <div class="hotline-desc">Suicide Crisis: 0800 567 567 • SMS: 31393</div>
+        </div>
+        <div id="resourceList"></div>
+      </div>
+    </div>
+    <div class="page" id="page-community">
+      <div class="community-header"><h2>Our Circle</h2><p>A safe, supportive space — you are not alone</p></div>
+      <div class="community-rules">This is a judgement-free zone. Be kind. Be gentle. Posts are anonymous by default.</div>
+      <div class="post-input-card">
+        <textarea class="post-textarea" id="communityPostText" placeholder="Share how you are feeling, ask a question, or offer encouragement..."></textarea>
+        <div class="post-actions">
+          <label class="anon-toggle"><input type="checkbox" id="anonCheck" checked> Post anonymously</label>
+          <button class="post-btn" onclick="submitPost()">Share</button>
+        </div>
+      </div>
+      <div class="community-feed" id="communityFeed"></div>
+    </div>
+  </div>
+  <nav class="bottom-nav">
+    <button class="nav-item active" id="nav-home" onclick="goTo('home')"><span class="nav-icon">🏠</span><span class="nav-label">Home</span></button>
+    <button class="nav-item" id="nav-journal" onclick="goTo('journal')"><span class="nav-icon">📔</span><span class="nav-label">Journal</span></button>
+    <button class="nav-item" id="nav-epds" onclick="goTo('epds')"><span class="nav-icon">📋</span><span class="nav-label">EPDS</span></button>
+    <button class="nav-item" id="nav-resources" onclick="goTo('resources')"><span class="nav-icon">📚</span><span class="nav-label">Resources</span></button>
+    <button class="nav-item" id="nav-community" onclick="goTo('community')"><span class="nav-icon">💜</span><span class="nav-label">Circle</span></button>
+  </nav>
+</div>
+
+<script>
+var MOTIVATIONS=[
+  {text:"You are doing better than you think.",lang:"English",icon:"🌸"},
+  {text:"One breath. One moment. You are here.",lang:"English",icon:"🌬️"},
+  {text:"Your baby is lucky to have you — not perfect, but real.",lang:"English",icon:"👶"},
+  {text:"Healing is not linear. Every day is a new start.",lang:"English",icon:"🌱"},
+  {text:"It is okay to ask for help. That is strength.",lang:"English",icon:"💪"},
+  {text:"You are enough, exactly as you are right now.",lang:"English",icon:"✨"},
+  {text:"Rest is not giving up. Rest is how you heal.",lang:"English",icon:"🌙"},
+  {text:"The love you have for your child is real, even when you cannot feel it.",lang:"English",icon:"❤️"},
+  {text:"This season is hard. It will not last forever.",lang:"English",icon:"🌤️"},
+  {text:"You showed up today. That matters more than you know.",lang:"English",icon:"⭐"},
+  {text:"Ungu'mama omuhle. Uyagcwaliseka njengoba unjalo.",lang:"isiZulu",icon:"🌸"},
+  {text:"Ungumama olungileyo. Uyonele ngokupheleleyo.",lang:"isiXhosa",icon:"💜"},
+  {text:"Jy is 'n goeie ma. Jy is genoeg presies soos jy is.",lang:"Afrikaans",icon:"🌷"},
+  {text:"O 'me ya molapo. O lekanye hantle.",lang:"Sesotho",icon:"🌻"},
+  {text:"O mme yo o molemo. O lekane go le go tona.",lang:"Setswana",icon:"🌼"},
+  {text:"U mama wa kahle. U ringanile ngokuphelela.",lang:"Xitsonga",icon:"🌺"},
+  {text:"Ndi mme muhulu. Ndi wa ngomu ya vhutshilo.",lang:"Tshivenda",icon:"🌸"},
+  {text:"Ungumake lomuhle. Unele ngokuphelele.",lang:"siSwati",icon:"💛"}
+];
+var EPDS_Q=[
+  {q:"I have been able to laugh and see the funny side of things",opts:["As much as I always could","Not quite so much now","Definitely not so much now","Not at all"]},
+  {q:"I have looked forward with enjoyment to things",opts:["As much as I ever did","Rather less than I used to","Definitely less than I used to","Hardly at all"]},
+  {q:"I have blamed myself unnecessarily when things went wrong",opts:["No, never","Not very often","Yes, some of the time","Yes, most of the time"]},
+  {q:"I have been anxious or worried for no good reason",opts:["No, not at all","Hardly ever","Yes, sometimes","Yes, very often"]},
+  {q:"I have felt scared or panicky for no very good reason",opts:["No, not at all","No, not much","Yes, sometimes","Yes, quite a lot"]},
+  {q:"Things have been getting on top of me",opts:["No, I have been coping as well as ever","No, most of the time I have coped quite well","Yes, sometimes I have not been coping as well as usual","Yes, most of the time I have not been able to cope at all"]},
+  {q:"I have been so unhappy that I have had difficulty sleeping",opts:["No, not at all","Not very often","Yes, sometimes","Yes, most of the time"]},
+  {q:"I have felt sad or miserable",opts:["No, not at all","Not very often","Yes, quite often","Yes, most of the time"]},
+  {q:"I have been so unhappy that I have been crying",opts:["No, never","Only occasionally","Yes, quite often","Yes, most of the time"]},
+  {q:"The thought of harming myself has occurred to me",opts:["Never","Hardly ever","Sometimes","Yes, quite often"]}
+];
+var EPDS_S=[[0,1,2,3],[0,1,2,3],[3,2,1,0],[0,1,2,3],[0,1,2,3],[0,1,2,3],[0,1,2,3],[0,1,2,3],[0,1,2,3],[0,1,2,3]];
+var RESOURCES=[
+  {icon:"🌸",title:"What is Postpartum Depression?",sub:"Understanding PPD",body:"<p>PPD is a serious but treatable mood disorder affecting 1 in 5 South African mothers. It is NOT a personal failing — it is a medical condition caused by hormonal changes after birth.</p><p>PPD is different from baby blues which last 2-3 weeks. PPD can start any time in the first year.</p><p><strong>Common symptoms:</strong></p><ul><li>Persistent sadness or crying</li><li>Feeling disconnected from your baby</li><li>Extreme fatigue</li><li>Anxiety or panic attacks</li><li>Difficulty sleeping even when baby sleeps</li><li>Thoughts of harming yourself or your baby</li></ul>"},
+  {icon:"🔍",title:"Early Detection and Warning Signs",sub:"Know what to look for",body:"<p>Early detection is key. Look out for:</p><ul><li>Persistent sadness lasting more than 2 weeks</li><li>Feeling like your baby would be better without you</li><li>Withdrawing from family and friends</li><li>Being unable to care for yourself or your baby</li><li>Anger or rage that feels out of proportion</li><li>Intrusive or frightening thoughts</li></ul>"},
+  {icon:"🛡️",title:"Prevention Strategies",sub:"Protecting your wellbeing",body:"<ul><li><strong>Build your support network</strong></li><li><strong>Sleep when baby sleeps</strong></li><li><strong>Eat nourishing food</strong></li><li><strong>Exercise gently</strong> — even a 10-minute walk helps</li><li><strong>Stay connected</strong> — isolation worsens PPD</li><li><strong>Attend all postnatal check-ups</strong></li></ul>"},
+  {icon:"🏥",title:"Treatment Options in South Africa",sub:"Help is available",body:"<ul><li><strong>Counselling</strong> — available at community health centres, some free</li><li><strong>Medication</strong> — antidepressants safe for breastfeeding available via prescription</li><li><strong>Group therapy</strong> — peer support groups run by SADAG</li><li><strong>Public hospitals</strong> — psychiatry departments provide free assessment</li></ul><p>SADAG: 0800 21 22 23 (Mon-Fri 8am-8pm)</p>"},
+  {icon:"👨‍👩‍👧",title:"Supporting a Partner with PPD",sub:"For fathers and family",body:"<ul><li>Take over baby duties so she can sleep</li><li>Listen without trying to fix</li><li>Remind her this is an illness, not weakness</li><li>Help her attend medical appointments</li><li>Never dismiss her feelings or compare her to other mothers</li></ul>"},
+  {icon:"🍼",title:"PPD and Breastfeeding",sub:"Managing both",body:"<ul><li>PPD can make breastfeeding harder — this is not your fault</li><li>Fed is best — whether you breastfeed, bottle-feed, or both</li><li>Many antidepressants are safe while breastfeeding — ask your doctor</li><li>A healthy, emotionally present mother benefits baby more than any feeding method</li></ul>"}
+];
+var SEED=[
+  {author:"Mama Thandi",initials:"MT",color:"#F4CEDD",textColor:"#B5537A",text:"Hi everyone. I had a really hard night with the baby and the crying (mine and his) but I got through it. If you are struggling tonight — you are not alone.",time:"2 hours ago",likes:14,replies:[{author:"Nandi",text:"Thank you for sharing. I cried last night too. Sending you so much love."}]},
+  {author:"Anonymous Mama",initials:"?",color:"#D4E8D3",textColor:"#3A6A3A",text:"I finally told my husband how I have been feeling and he cried too. He had no idea. Please tell your partners — they want to help but they do not know what you are going through.",time:"5 hours ago",likes:28,replies:[]},
+  {author:"Sifiso",initials:"S",color:"#D5E8F0",textColor:"#185FA5",text:"My EPDS score was 16. I was referred to a social worker at the clinic. I am scared but also relieved someone finally noticed. If your score is high please speak to someone.",time:"Yesterday",likes:31,replies:[{author:"Mama Lerato",text:"You are so brave for sharing this."}]},
+  {author:"Mama Precious",initials:"MP",color:"#EAD5F0",textColor:"#6A4A8C",text:"Something that helped me: I write one thing I did well as a mom each day. Today it was I gave him a bath. It is enough. YOU are enough.",time:"2 days ago",likes:44,replies:[]}
+];
+
+var currentLang='en';
+var journalEntries=JSON.parse(localStorage.getItem('ym_journal')||'[]');
+var currentJMood='';
+var epdsAnswers=new Array(10).fill(null);
+var communityPosts=JSON.parse(localStorage.getItem('ym_community')||JSON.stringify(SEED));
+var breathingInterval=null;
+var popupTimer=null;
+var popupIndex=0;
+
+document.addEventListener('DOMContentLoaded',function(){
+  var btns=document.querySelectorAll('.lang-btn');
+  btns.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      btns.forEach(function(b){b.classList.remove('active');});
+      btn.classList.add('active');
+      currentLang=btn.getAttribute('data-lang');
+    });
+  });
+  document.getElementById('langContinueBtn').addEventListener('click',function(){
+    showScreen('screenLogin');
+  });
+  buildEpds();
+  buildResources();
+  renderJournal();
+  renderCommunity();
+  setDailyAffirmation();
+  updateGreeting();
+  var saved=localStorage.getItem('ym_user');
+  if(saved){var u=JSON.parse(saved);setUser(u.name,u.plan||'basic');}
+  window.addEventListener('online',function(){document.getElementById('offlineBanner').classList.remove('show');});
+  window.addEventListener('offline',function(){document.getElementById('offlineBanner').classList.add('show');});
+  if(!navigator.onLine){document.getElementById('offlineBanner').classList.add('show');}
+});
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function switchTab(tab){
+  document.getElementById('formLogin').style.display=tab==='login'?'block':'none';
+  document.getElementById('formRegister').style.display=tab==='register'?'block':'none';
+  document.getElementById('tabLogin').classList.toggle('active',tab==='login');
+  document.getElementById('tabRegister').classList.toggle('active',tab==='register');
+}
+
+function doLogin(){
+  var email=document.getElementById('loginEmail').value.trim();
+  if(!email){alert('Please enter your email address.');return;}
+  setUser(email.split('@')[0],'basic');
+  showScreen('screenSubscribe');
+}
+
+function doRegister(){
+  var name=document.getElementById('regName').value.trim();
+  var email=document.getElementById('regEmail').value.trim();
+  if(!name||!email){alert('Please fill in your name and email.');return;}
+  setUser(name,'basic');
+  showScreen('screenSubscribe');
+}
+
+function continueAsGuest(){setUser('Mama','basic');showScreen('screenSubscribe');}
+
+function setUser(name,plan){
+  localStorage.setItem('ym_user',JSON.stringify({name:name,plan:plan}));
+  document.getElementById('userAvatar').textContent=name.charAt(0).toUpperCase();
+  document.getElementById('heroName').textContent=name+' ♡';
+}
+
+function choosePlan(plan){
+  localStorage.setItem('ym_plan',plan);
+  document.getElementById('planBadge').textContent=plan==='premium'?'⭐ Flourish':'🌸 Blossom';
+  showScreen('screenApp');
+  setTimeout(showPopup,10000);
+}
+
+function showPopup(){
+  var m=MOTIVATIONS[popupIndex%MOTIVATIONS.length];
+  document.getElementById('popupText').textContent=m.text;
+  document.getElementById('popupLang').textContent=m.lang;
+  document.getElementById('popupIcon').textContent=m.icon;
+  popupIndex++;
+  document.getElementById('motivationPopup').classList.add('show');
+  popupTimer=setTimeout(function(){closePopup();setTimeout(showPopup,5*60*1000);},7000);
+}
+
+function closePopup(){
+  clearTimeout(popupTimer);
+  document.getElementById('motivationPopup').classList.remove('show');
+}
+
+function goTo(page){
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active');});
+  document.getElementById('page-'+page).classList.add('active');
+  var nav=document.getElementById('nav-'+page);
+  if(nav)nav.classList.add('active');
+  document.querySelector('.app-content').scrollTop=0;
+}
+
+function updateGreeting(){
+  var h=new Date().getHours();
+  document.getElementById('heroGreeting').textContent=h<12?'Good morning,':h<17?'Good afternoon,':'Good evening,';
+}
+
+function setDailyAffirmation(){
+  document.getElementById('dailyAffirmation').textContent=MOTIVATIONS[new Date().getDate()%MOTIVATIONS.length].text;
+}
+
+function selectMood(el,emoji){
+  document.querySelectorAll('.mood-pill').forEach(function(p){p.classList.remove('selected');});
+  el.classList.add('selected');
+  journalEntries.unshift({type:'mood',emoji:emoji,date:new Date().toLocaleDateString('en-ZA'),time:new Date().toLocaleTimeString('en-ZA',{hour:'2-digit',minute:'2-digit'})});
+  localStorage.setItem('ym_journal',JSON.stringify(journalEntries));
+}
+
+function setJMood(el,emoji){document.querySelectorAll('.jmood').forEach(function(m){m.classList.remove('sel');});el.classList.add('sel');currentJMood=emoji;}
+
+function saveJournal(){
+  var text=document.getElementById('journalText').value.trim();
+  if(!text)return;
+  journalEntries.unshift({type:'text',text:text,mood:currentJMood,date:new Date().toLocaleDateString('en-ZA',{weekday:'long',year:'numeric',month:'long',day:'numeric'}),time:new Date().toLocaleTimeString('en-ZA',{hour:'2-digit',minute:'2-digit'})});
+  localStorage.setItem('ym_journal',JSON.stringify(journalEntries));
+  document.getElementById('journalText').value='';
+  currentJMood='';
+  document.querySelectorAll('.jmood').forEach(function(m){m.classList.remove('sel');});
+  renderJournal();
+}
+
+function renderJournal(){
+  var c=document.getElementById('journalEntries');
+  var entries=journalEntries.filter(function(e){return e.type==='text';});
+  if(!entries.length){c.innerHTML='<p style="color:var(--text-light);font-size:14px;padding:8px 0;text-align:center;">Your journal is waiting — write your first entry above</p>';return;}
+  c.innerHTML=entries.map(function(e){return '<div class="journal-entry"><div class="entry-meta"><div class="entry-date">'+e.date+' at '+e.time+'</div><div class="entry-mood">'+(e.mood||'')+'</div></div><div class="entry-text">'+e.text+'</div></div>';}).join('');
+}
+
+function buildEpds(){
+  var html=EPDS_Q.map(function(q,i){
+    return '<div class="epds-question"><div class="epds-q-num">Question '+(i+1)+' of '+EPDS_Q.length+'</div><div class="epds-q-text">'+q.q+'</div><div class="epds-options">'+q.opts.map(function(opt,j){return '<button class="epds-opt" onclick="answerEpds('+i+','+j+',this)">'+opt+'</button>';}).join('')+'</div></div>';
+  }).join('');
+  document.getElementById('epdsFormContainer').innerHTML=html+'<button class="epds-submit" onclick="submitEpds()">See my results</button>';
+}
+
+function answerEpds(qi,oi,btn){
+  epdsAnswers[qi]=oi;
+  btn.closest('.epds-options').querySelectorAll('.epds-opt').forEach(function(b){b.classList.remove('selected');});
+  btn.classList.add('selected');
+}
+
+function submitEpds(){
+  if(epdsAnswers.indexOf(null)!==-1){alert('Please answer all questions before continuing.');return;}
+  var score=epdsAnswers.reduce(function(s,a,i){return s+EPDS_S[i][a];},0);
+  document.getElementById('epdsScoreNum').textContent=score;
+  var title,text,cls;
+  if(score<=9){cls='score-low';title='Low risk of PPD';text='Your score of '+score+' suggests you are coping well. Continue to check in regularly and reach out to your healthcare provider at any routine visit.';}
+  else if(score<=12){cls='score-mid';title='Possible mild PPD';text='Your score of '+score+' suggests you may be experiencing some postpartum distress. Please share these results with your nurse, midwife, or doctor.\n\nSADAG: 0800 21 22 23';}
+  else{cls='score-high';title='Please seek support';text='Your score of '+score+' suggests you may be experiencing significant postpartum depression. Please contact your healthcare provider as soon as possible.\n\nSADAG Crisis: 0800 456 789 (24hrs)\nSuicide Crisis: 0800 567 567';}
+  document.getElementById('epdsScoreCircle').className='epds-score-circle '+cls;
+  document.getElementById('epdsResultTitle').textContent=title;
+  document.getElementById('epdsResultText').textContent=text;
+  document.getElementById('epdsFormContainer').style.display='none';
+  var r=document.getElementById('epdsResult');r.style.display='block';r.scrollIntoView({behavior:'smooth'});
+  localStorage.setItem('ym_last_epds',JSON.stringify({score:score,date:new Date().toISOString()}));
+}
+
+function resetEpds(){
+  epdsAnswers=new Array(10).fill(null);
+  document.getElementById('epdsFormContainer').style.display='block';
+  document.getElementById('epdsResult').style.display='none';
+  document.querySelectorAll('.epds-opt').forEach(function(b){b.classList.remove('selected');});
+  document.querySelector('.app-content').scrollTop=0;
+}
+
+function buildResources(){
+  document.getElementById('resourceList').innerHTML=RESOURCES.map(function(r,i){
+    return '<div class="resource-card" id="res-'+i+'"><div class="resource-card-header" onclick="toggleResource('+i+')"><div class="resource-card-left"><div class="resource-icon">'+r.icon+'</div><div><div class="resource-title">'+r.title+'</div><div class="resource-subtitle">'+r.sub+'</div></div></div><div class="resource-chevron">v</div></div><div class="resource-body">'+r.body+'</div></div>';
+  }).join('');
+}
+
+function toggleResource(i){document.getElementById('res-'+i).classList.toggle('open');}
+
+function renderCommunity(){
+  document.getElementById('communityFeed').innerHTML=communityPosts.map(function(p,i){
+    var replies=p.replies.map(function(r){return '<div class="reply-item"><div class="reply-avatar">'+r.author.substring(0,2).toUpperCase()+'</div><div class="reply-content"><div class="reply-author">'+r.author+'</div><div class="reply-text">'+r.text+'</div></div></div>';}).join('');
+    return '<div class="community-post"><div class="post-header"><div class="post-avatar" style="background:'+p.color+';color:'+p.textColor+'">'+p.initials+'</div><div><div class="post-author">'+p.author+'</div><div class="post-time">'+p.time+'</div></div></div><div class="post-text">'+p.text+'</div><div class="post-footer"><div class="post-action '+(p.liked?'liked':'')+'" onclick="likePost('+i+')">♥ '+p.likes+'</div><div class="post-action" onclick="toggleReplies('+i+')">💬 '+p.replies.length+' replies</div></div><div class="reply-section '+(p.showReplies?'open':'')+'" id="replies-'+i+'">'+replies+'<div class="reply-input-row"><input class="reply-input" id="reply-input-'+i+'" placeholder="Add a supportive reply..."/><button class="reply-send" onclick="addReply('+i+')">Send</button></div></div></div>';
+  }).join('');
+}
+
+function likePost(i){communityPosts[i].liked=!communityPosts[i].liked;communityPosts[i].likes+=communityPosts[i].liked?1:-1;localStorage.setItem('ym_community',JSON.stringify(communityPosts));renderCommunity();}
+function toggleReplies(i){communityPosts[i].showReplies=!communityPosts[i].showReplies;renderCommunity();}
+function addReply(i){var t=document.getElementById('reply-input-'+i).value.trim();if(!t)return;communityPosts[i].replies.push({author:'You',text:t});communityPosts[i].showReplies=true;localStorage.setItem('ym_community',JSON.stringify(communityPosts));renderCommunity();}
+
+function submitPost(){
+  var text=document.getElementById('communityPostText').value.trim();if(!text)return;
+  var anon=document.getElementById('anonCheck').checked;
+  var cols=['#F4CEDD','#D4E8D3','#D5E8F0','#EAD5F0','#F5E4C4'],tc=['#B5537A','#3A6A3A','#185FA5','#6A4A8C','#7A5A00'],idx=Math.floor(Math.random()*5);
+  communityPosts.unshift({author:anon?'Anonymous Mama':'You',initials:anon?'?':'Y',color:cols[idx],textColor:tc[idx],text:text,time:'Just now',likes:0,replies:[],showReplies:false});
+  localStorage.setItem('ym_community',JSON.stringify(communityPosts));
+  document.getElementById('communityPostText').value='';
+  renderCommunity();
+}
+
+function startBreathing(){document.getElementById('breathingOverlay').classList.add('show');}
+
+function runBreathCycle(){
+  var circle=document.getElementById('breathCircle'),instr=document.getElementById('breathInstruction');
+  circle.onclick=null;var phase=0;
+  var phases=['Breathe in','Hold','Breathe out','Rest'],classes=['inhale','','',''],durations=[4000,2000,6000,2000];
+  function next(){instr.textContent=phases[phase];circle.className='breath-circle '+classes[phase];circle.textContent=phases[phase];phase=(phase+1)%4;breathingInterval=setTimeout(next,durations[phase===0?3:phase-1]);}
+  next();
+}
+
+function stopBreathing(){
+  clearTimeout(breathingInterval);
+  document.getElementById('breathingOverlay').classList.remove('show');
+  var c=document.getElementById('breathCircle');c.className='breath-circle';c.textContent='Breathe';c.onclick=runBreathCycle;
+}
+
+if('serviceWorker'in navigator){navigator.serviceWorker.register('sw.js').catch(function(){});}
+</script>
+</body>
+</html>
