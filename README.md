@@ -30,7 +30,6 @@ Postpartum depression affects approximately 1 in 5 South African mothers, and is
 | 📋 **EPDS Screening** | Full Edinburgh Postnatal Depression Scale (10 questions, scored, with referral guidance) |
 | 📚 **Resources** | Education on PPD prevention, detection, treatment options in South Africa |
 | ✨ **Gentle Words** | Affirmations in all 11 official South African languages |
-| 💜 **Community Circle** | Anonymous peer support forum |
 | 🌬️ **Breathing Exercise** | Guided 4-2-6 calming breath tool |
 | 🏥 **Healthcare Dashboard** | Separate clinician view for monitoring patient EPDS scores and risk levels |
 
