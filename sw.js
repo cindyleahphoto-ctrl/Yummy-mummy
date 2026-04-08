@@ -1,4 +1,4 @@
-const CACHE_NAME = 'yummy-mummy-v3';
+const CACHE_NAME = 'yummy-mummy-v4';
 const ASSETS = [
   './',
   './index.html',
